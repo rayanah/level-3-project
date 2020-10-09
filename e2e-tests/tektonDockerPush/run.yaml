@@ -1,8 +1,16 @@
 apiVersion: tekton.dev/v1beta1
 kind: TaskRun
 metadata:
-  name: build-push-task-run-2
+  name: dockr-runner
 spec:
-  serviceAccountName: build-bot
+  serviceAccountName: rayanah-docker-hub
   taskRef:
-    name: build-push
+    name: dockr
+  params:
+  - name: IMAGE
+    value: "rayanah/e2e-tests"
+  resources:
+    inputs:
+    - name: sock-shop
+      resourceRef:
+        name: sock-shop

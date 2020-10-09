@@ -1,9 +1,11 @@
-apiVersion: tekton.dev/v1beta1
-kind: PipelineRun
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineResource
 metadata:
-  name: demo-pipeline
-  namespace: default
+  name: sock-shop
 spec:
-  serviceAccountName: build-bot
-  pipelineRef:
-    name: demo-pipeline
+  type: git
+  params:
+    - name: revision
+      value: master
+    - name: url
+      value: https://github.com/rayanah/level-3-project.git
