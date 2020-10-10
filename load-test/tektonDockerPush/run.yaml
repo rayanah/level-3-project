@@ -1,14 +1,14 @@
 apiVersion: tekton.dev/v1beta1
 kind: TaskRun
 metadata:
-  name: catalogue
+  name: load-test
 spec:
-  serviceAccountName: catalogue-docker-hub
+  serviceAccountName: load-test-docker-hub
   taskRef:
-    name: catalogue
+    name: load-test
   params:
   - name: IMAGE
-    value: "rayanah/catalogue"
+    value: "rayanah/load-test"
   resources:
     inputs:
     - name: level-3-project
