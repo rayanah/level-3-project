@@ -22,3 +22,10 @@ user-image:
      kubectl create -f user/tektonDockerPush/run.yaml -n tekton-pipelines
      kubectl create -f user/tektonDockerPush/task.yaml -n tekton-pipelinens
 
+user-image:
+ 
+     kubectl create -f catalogue/tektonDockerPush/serviceaccount.yaml -n tekton-pipelines
+     kubectl create -f catalogue/tektonDockerPush/pipelinerun.yaml -n tekton-pipelines
+     kubectl create -f catalogue/tektonDockerPush/run.yaml -n tekton-pipelines
+     kubectl create -f catalogue/tektonDockerPush/task.yaml -n tekton-pipelinens
+
