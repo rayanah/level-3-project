@@ -1,0 +1,16 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: user
+spec:
+  serviceAccountName: user-docker-hub
+  taskRef:
+    name: user
+  params:
+  - name: IMAGE
+    value: "rayanah/user"
+  resources:
+    inputs:
+    - name: level-3-project
+      resourceRef:
+        name: level-3-project
