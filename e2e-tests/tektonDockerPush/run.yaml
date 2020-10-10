@@ -11,6 +11,6 @@ spec:
     value: "rayanah/e2e-tests"
   resources:
     inputs:
-    - name: sock-shop
+    - name: level-3-project
       resourceRef:
-        name: sock-shop
+        name: level-3-project
