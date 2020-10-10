@@ -1,14 +1,14 @@
 apiVersion: tekton.dev/v1beta1
 kind: TaskRun
 metadata:
-  name: front-end
+  name: orders
 spec:
-  serviceAccountName: front-end-docker-hub
+  serviceAccountName: orders-docker-hub
   taskRef:
-    name: front-end
+    name: orders
   params:
   - name: IMAGE
-    value: "rayanah/front-end"
+    value: "rayanah/orders"
   resources:
     inputs:
     - name: level-3-project
