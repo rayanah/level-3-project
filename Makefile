@@ -2,6 +2,11 @@
 up: 
 	cd k8s-sandbox && make up && make install-cicd
 
+secret-dockerhup:
+	docker login
+	kubectl create secret generic regcred \
+	 --from-file=.dockerconfigjson=/home/ubuntu/.docker/config.json \
+ 	--type=kubernetes.io/dockerconfigjson -n tekton-pipelines
 e2e-tests-image:
 	kubectl create -f e2e-tests/tektonDockerPush/serviceaccount.yaml -n tekton-pipelines\
         kubectl create -f e2e-tests/tektonDockerPush/pipelinerun.yaml -n tekton-pipelines\
