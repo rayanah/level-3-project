@@ -1,0 +1,16 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: shipping
+spec:
+  serviceAccountName: shipping-docker-hub
+  taskRef:
+    name: shipping
+  params:
+  - name: IMAGE
+    value: "rayanah/shipping"
+  resources:
+    inputs:
+    - name: level-3-project
+      resourceRef:
+        name: level-3-project
