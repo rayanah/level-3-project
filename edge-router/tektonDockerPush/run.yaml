@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: TaskRun
 metadata:
-  name: orders
+  name: edge-router
 spec:
   serviceAccountName: edge-router-docker-hub
   taskRef:
