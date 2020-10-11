@@ -15,6 +15,6 @@ COPY --from=build ./orders/target *.jar ./app.jar
 
 #USER ${SERVICE_USER}
 
-#ENTRYPOINT ["/usr/local/bin/java.sh","-jar","./app.jar", "--port=80"]
-cmd ["java", "-jar", "target/person-service-1.0.0.jar", "--port=80"]
+ENTRYPOINT ["/usr/local/bin/java.sh","-jar","./app.jar", "--port=80"]
+#cmd ["java", "-jar", "target/person-service-1.0.0.jar", "--port=80"]
 
