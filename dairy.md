@@ -1,0 +1,18 @@
+## Day 1
+  Create my own Sandbox and Create New Repo for the final-project and clone all the micro-services  
+
+###### **finish day 1 Successfully**
+
+## Day 2
+  Run Sandbox and create Cluster and cofigure it with the project needs, and Work on micro-services DockerFiles and try to push them to dockerHup by Tekton pipelines.
+  I have a little conflict in creating secret by yaml file, but I switched to create a secret based on existing Docker credentials by -docker login-. So I start pushing the images and some of them working fine and others I have problem with them 
+  half the images
+###### **finish day 2 with almost half Successful**
+
+## Day 3
+ All the day working completing push images to dockerHup, I have successful pushing all images even the multistage images and so happy to figure it out 
+###### **finish day 3 **
+
+## Day 4
+ After finish  pushing the images, I decide to test and run the Dockerfiles locally, before continue on unstable ground. Sadly, some images didn't work. So I review all the micro-service dockerfile and go all over the internet to search and figure out the cause of errors in run the Dockerfile
+###### **finish day 4 **
