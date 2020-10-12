@@ -17,3 +17,8 @@ test:
 	GROUP=weaveworksdemos COMMIT=$(COMMIT) ./scripts/build.sh
 	./test/test.sh unit.py
 	./test/test.sh container.py --tag $(COMMIT)
+test-build:
+	DOCKER_BUILDKIT=1 docker build --progress=plain --tag rayanah/payment .
+
+test-run:
+	docker run -it --rm -p 8089:80 rayanah/payment
