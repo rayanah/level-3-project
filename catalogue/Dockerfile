@@ -9,6 +9,7 @@ RUN gvt restore && \
 
 FROM alpine:3.4
 
+
 ENV	SERVICE_USER=myuser \
 	SERVICE_UID=10001 \
 	SERVICE_GROUP=mygroup \
