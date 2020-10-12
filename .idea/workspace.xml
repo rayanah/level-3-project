@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5c69c76f-c8ca-4387-8d1e-487bbc5f1481" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/shipping/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/shipping/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/orders/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orders/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/orders/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orders/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/orders/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shipping/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/shipping/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shipping/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/shipping/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

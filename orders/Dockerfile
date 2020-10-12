@@ -1,20 +1,23 @@
-FROM maven as build
-
-COPY . /orders
+# syntax=docker/dockerfile:experimental
+FROM maven:3-jdk-11 as build
 
 WORKDIR /orders
 
-RUN mvn -DskipTests package && pwd target && ls target
+COPY pom.xml /orders
+
+COPY src /orders/src
+
+run --mount=type=cache,id=maven,target=/root/.m2,sharing=shared mvn clean package && pwd target && ls target
+
 
 FROM weaveworksdemos/msd-java:jre-latest
 
-COPY --from=build ./orders/target *.jar ./app.jar
+COPY --from=build /orders/target/orders.jar ./app.jar
 #WORKDIR /usr/src/app
+#RUN	chmod a+rx ./app.jar
+RUN	chown -R ${SERVICE_USER}:${SERVICE_GROUP} ./app.jar
 
-#RUN	chown -R ${SERVICE_USER}:${SERVICE_GROUP} ./app.jar
+USER ${SERVICE_USER}
 
-#USER ${SERVICE_USER}
-
-ENTRYPOINT ["/usr/local/bin/java.sh","-jar","./app.jar", "--port=80"]
-#cmd ["java", "-jar", "target/person-service-1.0.0.jar", "--port=80"]
+ENTRYPOINT ["/usr/bin/java","-jar","./app.jar", "--port=80"]
 
