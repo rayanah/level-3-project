@@ -22,3 +22,9 @@ dockertravisbuild: build
 	docker build -t $(DBNAME):$(TAG) -f docker/catalogue-db/Dockerfile docker/catalogue-db/
 	docker login -u $(DOCKER_USER) -p $(DOCKER_PASS)
 	scripts/push.sh
+
+build-test:
+	DOCKER_BUILDKIT=1 docker build --progress=plain --tag rayanah/carts .
+
+run-test:
+	docker run -it --rm -p 8083:80 rayanah/carts

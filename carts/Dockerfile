@@ -1,39 +1,23 @@
-#FROM java:openjdk-8-alpine
-
-#WORKDIR /usr/src/app
-#COPY ./target/*.jar ./app.jar
-#ENTRYPOINT ["java","-Djava.security.egd=file:/dev/urandom","-jar","./app.jar", "--port=80"]
-
-FROM maven as build
-
-COPY . /carts
+# syntax=docker/dockerfile:experimental
+FROM maven:3-jdk-11 as build
 
 WORKDIR /carts
 
-RUN mvn -DskipTests package && pwd target && ls target
+COPY pom.xml /carts
 
-#cmd ["java", "-jar", "target/person-service-1.0.0.jar"]
+COPY src /carts/src
 
-
-#FROM weaveworksdemos/msd-java:jre-latest
-
-#WORKDIR /usr/src/app
-#COPY --from=build ./orders/target *.jar ./app.jar
-
-#RUN    chown -R ${SERVICE_USER}:${SERVICE_GROUP} ./app.jar
-
-#USER ${SERVICE_USER}
-
-#ENTRYPOINT ["/usr/local/bin/java.sh","-jar","./app.jar", "--port=80"]
-#cmd ["java", "-jar", "target/person-service-1.0.0.jar"]
+run --mount=type=cache,id=maven,target=/root/.m2,sharing=shared mvn clean package
 
 
 FROM weaveworksdemos/msd-java:jre-latest
 
-WORKDIR /usr/src/app
-COPY --from=build ./carts/target *.jar ./app.jar
+COPY --from=build ./carts/target/carts.jar ./app.jar
 
+#RUN	chmod a+rx ./app.jar
 RUN	chown -R ${SERVICE_USER}:${SERVICE_GROUP} ./app.jar
+#doesnt work unless with weaveworksdemos/msd-java:jre-latest
+
 
 USER ${SERVICE_USER}
 
@@ -41,7 +25,7 @@ ARG BUILD_DATE
 ARG BUILD_VERSION
 ARG COMMIT
 
-LABEL org.label-schema.vendor="Weaveworks" \
+LABEL org.label-schema.vendor="rayanah" \
   org.label-schema.build-date="${BUILD_DATE}" \
   org.label-schema.version="${BUILD_VERSION}" \
   org.label-schema.name="Socks Shop: Cart" \

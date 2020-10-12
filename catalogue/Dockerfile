@@ -20,7 +20,7 @@ RUN	addgroup -g ${SERVICE_GID} ${SERVICE_GROUP} && \
 
 WORKDIR /
 COPY --from=0 /app /app
-COPY images/ /images/
+COPY /images/ /images/
 
 RUN	chmod +x /app && \
 	chown -R ${SERVICE_USER}:${SERVICE_GROUP} /app /images && \
