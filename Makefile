@@ -45,3 +45,6 @@ orders-image:
 edge-router-image:
 	kubectl create -f edge-router/tektonDockerPush/serviceaccount.yaml -f edge-router/tektonDockerPush/pipelinerun.yaml\
          -f edge-router/tektonDockerPush/task.yaml -f edge-router/tektonDockerPush/run.yaml -n test
+load-test-image:
+	kubectl create -f load-test/tektonDockerPush/serviceaccount.yaml -f load-test/tektonDockerPush/pipelinerun.yaml\
+         -f load-test/tektonDockerPush/task.yaml -f load-test/tektonDockerPush/run.yaml -n test
