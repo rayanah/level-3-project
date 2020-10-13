@@ -32,5 +32,16 @@ shipping-image:
 	 -f shipping/tektonDockerPush/task.yaml -f shipping/tektonDockerPush/run.yaml -n test
 
 carts-image:
-	kubectl create -f carts/tektonDockerPush/serviceaccount.yaml -f cart/tektonDockerPush/pipelinerun.yaml\
+	kubectl create -f carts/tektonDockerPush/serviceaccount.yaml -f carts/tektonDockerPush/pipelinerun.yaml\
 	 -f carts/tektonDockerPush/task.yaml -f carts/tektonDockerPush/run.yaml -n test
+
+queue-master-image:
+	  kubectl create -f queue-master/tektonDockerPush/serviceaccount.yaml -f queue-master/tektonDockerPush/pipelinerun.yaml\
+         -f queue-master/tektonDockerPush/task.yaml -f queue-master/tektonDockerPush/run.yaml -n test
+orders-image:
+	kubectl create -f orders/tektonDockerPush/serviceaccount.yaml -f orders/tektonDockerPush/pipelinerun.yaml\
+         -f orders/tektonDockerPush/task.yaml -f orders/tektonDockerPush/run.yaml -n test
+
+edge-router-image:
+	kubectl create -f edge-router/tektonDockerPush/serviceaccount.yaml -f edge-router/tektonDockerPush/pipelinerun.yaml\
+         -f edge-router/tektonDockerPush/task.yaml -f edge-router/tektonDockerPush/run.yaml -n test

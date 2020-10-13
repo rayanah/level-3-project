@@ -1,11 +1,11 @@
 apiVersion: tekton.dev/v1beta1
 kind: TaskRun
 metadata:
-  name: dockr-runner
+  name: e2e-test
 spec:
-  serviceAccountName: rayanah-docker-hub
+  serviceAccountName: e2e-test-docker-hub
   taskRef:
-    name: dockr
+    name: e2e-test
   params:
   - name: IMAGE
     value: "rayanah/e2e-tests"
@@ -13,4 +13,4 @@ spec:
     inputs:
     - name: level-3-project
       resourceRef:
-        name: level-3-project
+        name: e2e-test

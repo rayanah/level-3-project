@@ -7,8 +7,8 @@ COPY pom.xml /carts
 
 COPY src /carts/src
 
-run --mount=type=cache,id=maven,target=/root/.m2,sharing=shared mvn clean package
-
+#run --mount=type=cache,id=maven,target=/root/.m2,sharing=shared
+RUN  mvn clean package
 
 FROM weaveworksdemos/msd-java:jre-latest
 
