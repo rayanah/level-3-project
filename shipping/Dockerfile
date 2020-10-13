@@ -4,8 +4,8 @@ WORKDIR /tmp
 copy src /tmp/src
 copy pom.xml /tmp/
 
-run --mount=type=cache,id=maven,target=/root/.m2,sharing=shared mvn clean package && pwd target && ls target
-
+#run --mount=type=cache,id=maven,target=/root/.m2,sharing=shared mvn clean package && pwd target && ls target
+run mvn clean package 
 from adoptopenjdk/openjdk11:alpine
 #WORKDIR /usr/src/app
 COPY --from=build /tmp/target/shipping.jar /shipping.jar
