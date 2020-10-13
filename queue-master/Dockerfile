@@ -1,11 +1,13 @@
-FROM maven:3-jdk-11 as build
-WORKDIR /tmp
+# syntax=docker/dockerfile:experimental
+FROM maven:3.3-jdk-8 as build
 
-copy src /tmp/src
-copy pom.xml /tmp/
+WORKDIR /queue
 
-run --mount=type=cache,id=maven,target=/root/.m2,sharing=shared mvn clean package
+copy src /queue/src
+copy pom.xml /queue/
 
+#RUN --mount=type=cache,id=maven,target=/root/.m2,sharing=shared mvn clean package
+RUN mvn clean package
 
 FROM java:openjdk-8-alpine
 
@@ -22,12 +24,13 @@ RUN	addgroup -g ${SERVICE_GID} ${SERVICE_GROUP} && \
 	ln -s /usr/lib/jvm/java-1.8-openjdk/lib/amd64/jli/libjli.so /lib/libjli.so && \
 	setcap 'cap_net_bind_service=+ep' $(readlink -f $(which java))
 
-WORKDIR /usr/src/queue-m
+WORKDIR ./queue
 
-COPY --from=build /tmp/target/queue-m.jar /queue-m.jar
+COPY --from=build ./queue/target/queue.jar /queue.jar
 
-RUN	chown -R ${SERVICE_USER}:${SERVICE_GROUP} ./queue-m.jar
+RUN	chown -R ${SERVICE_USER}:${SERVICE_GROUP} ./queue.jar
 
 USER ${SERVICE_USER}
 
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/urandom","-jar","./queue-m.jar", "--port=80"]
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/urandom","-jar","./queue.jar", "--port=80"]
+
