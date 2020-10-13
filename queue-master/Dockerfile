@@ -8,7 +8,7 @@ copy pom.xml /queue/
 
 #RUN --mount=type=cache,id=maven,target=/root/.m2,sharing=shared mvn clean package
 RUN mvn clean package
-
+RUN ls && pwd && ls target
 FROM java:openjdk-8-alpine
 
 ENV	SERVICE_USER=myuser \
@@ -26,11 +26,11 @@ RUN	addgroup -g ${SERVICE_GID} ${SERVICE_GROUP} && \
 
 WORKDIR ./queue
 
-COPY --from=build ./queue/target/queue.jar /queue.jar
+COPY --from=build /queue/target/queue-master.jar ./queue-master.jar
 
-RUN	chown -R ${SERVICE_USER}:${SERVICE_GROUP} ./queue.jar
+RUN	chown -R ${SERVICE_USER}:${SERVICE_GROUP} ./queue-master.jar
 
 USER ${SERVICE_USER}
 
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/urandom","-jar","./queue.jar", "--port=80"]
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/urandom","-jar","./queue-master.jar", "--port=80"]
 
