@@ -1,4 +1,4 @@
-# syntax=docker/dockerfile:experimental
+#syntax=docker/dockerfile:experimental
 FROM maven:3-jdk-11 as build
 
 
@@ -8,8 +8,7 @@ COPY pom.xml /orders
 
 COPY src /orders/src
 
-run --mount=type=cache,id=maven,target=/root/.m2,sharing=shared mvn clean package && pwd target && ls target
-
+RUN mvn clean package
 
 FROM weaveworksdemos/msd-java:jre-latest
 
