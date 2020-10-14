@@ -14,5 +14,15 @@
 ###### **finish day 3 **
 
 ## Day 4
- After finish  pushing the images, I decide to test and run the Dockerfiles locally, before continue on unstable ground. Sadly, some images didn't work. So I review all the micro-service dockerfile and go all over the internet to search and figure out the cause of errors in run the Dockerfile
+ After finish  pushing the images, I decide to test and run the Dockerfiles locally, before continue on unstable ground. Sadly, some images didn't work. So I review all the micro-service dockerfile and go all over the web and figure out the cause of errors in running the Dockerfiles
 ###### **finish day 4 **
+
+## Day 5
+ Continue with Dockerfiles and Done finaly 
+
+##### **finish day 5 Successfuly **
+
+## Day 6 
+ Woring with k8 , and I have hard time with it.
+
+##### **finish day 6 **
