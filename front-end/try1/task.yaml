@@ -3,8 +3,8 @@ kind: Task
 metadata:
   name: front-end-run
 spec:
-  inputs:
     resources:
+      inputs:
       - name: level-3-project
         type: git
     params:
@@ -17,9 +17,9 @@ spec:
       - name: imageUrl
         description: Url of image repository
         default: rayanah/front-end
-      - name: imageTag
-        description: Tag of the images to be used.
-        default: "latest"
+    results:
+     - name: IMAGE-DIGEST
+       description: Digest of the image just built.
   steps:
     - name: update-yaml
       image: alpine
@@ -27,7 +27,7 @@ spec:
       args:
         - "-i"
         - "-e"
-        - "s;IMAGE;$(inputs.params.imageUrl):$(inputs.params.imageTag);g"
+        - "s;IMAGE;$(inputs.params.imageUrl);g"
         - "$(inputs.resources.git-source.path)/$(inputs.params.pathToContext)/$(inputs.params.pathToYamlFile)"
     - name: deploy-app
       image: lachlanevenson/k8s-kubectl
