@@ -1,12 +1,13 @@
-apiVersion: apps/v1
+---
+apiVersion: apps/v1 
 kind: Deployment
 metadata:
   name: front-end
+  namespace: test
   labels:
     app: front-end
-    type: api
 spec:
-  replicas: 1
+  replicas: 1 
   selector:
     matchLabels:
       app: front-end
@@ -18,5 +19,14 @@ spec:
       containers:
       - name: front-end
         image: rayanah/front-end
+        resources:
+          limits:
+            cpu: 300m
+            memory: 1000Mi
+          requests:
+            cpu: 100m
+            memory: 300Mi
         ports:
-        - containerPort: 80
+        - containerPort: 8079
+      nodeSelector:
+        beta.kubernetes.io/os: linux
