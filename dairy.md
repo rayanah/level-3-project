@@ -18,7 +18,7 @@
 ###### **finish day 4**
 
 ## Day 5
- Continue with Dockerfiles and Done finaly 
+ Continue with Dockerfiles and Done finaly from pushing the images.
 
 ###### **finish day 5 Successfuly**
 
@@ -26,3 +26,16 @@
  Woring with k8 , and I have hard time with it.
 
 ###### **finish day 6**
+
+## Day 7
+ Suffering from using k8s with the microservices, starting with front end. and the front end stubborn to work.
+
+
+## Day 8
+ Still working in front end to deploy with k8s.
+
+
+## Day 9
+ Finally the front end work from stuppid mistake. Shame to mension it,all the three days wasted, becuase the selector label are diffrent in the Deployement and Service. Next after finish from k8, try to deploy the front-end by tekton.
+
+
