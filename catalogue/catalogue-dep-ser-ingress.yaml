@@ -1,0 +1,61 @@
+--- 
+apiVersion: apps/v1 
+kind: Deployment
+metadata:
+  name: catalogue
+  namespace: test
+  labels:
+    app: catalogue
+spec:
+  replicas: 1 
+  selector:
+    matchLabels:
+      app: catalogue
+  template:
+    metadata:
+      labels:
+        app: catalogue
+    spec:
+      containers:
+      - name: catalogue
+        image: rayanah/catalogue
+        resources:
+          limits:
+            cpu: 300m
+            memory: 1000Mi
+          requests:
+            cpu: 100m
+            memory: 300Mi
+        ports:
+        - containerPort: 80
+      nodeSelector:
+        beta.kubernetes.io/os: linux
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: catalogue
+  labels:
+    app: catalogue
+spec:
+  type: NodePort
+  ports:
+  - port: 80
+    targetPort: 80
+    nodePort: 30002
+  selector:
+    app: catalogue
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: catalogue-ingress
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /catalogue
+        backend:
+          serviceName: catalogue
+          servicePort: 80
+
