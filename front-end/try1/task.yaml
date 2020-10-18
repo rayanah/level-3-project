@@ -16,18 +16,21 @@ spec:
         default: front-end-dep.yaml
       - name: imageUrl
         description: Url of image repository
-        default: rayanah/front-end
+        default: url
+      - name: imageTag
+        description: Tag of the images to be used.
+        default: "latest"
     results:
-     - name: IMAGE-DIGEST
+     - name: deploy
        description: Digest of the image just built.
-  steps:
+    steps:
     - name: update-yaml
       image: alpine
       command: ["sed"]
       args:
         - "-i"
         - "-e"
-        - "s;IMAGE;$(inputs.params.imageUrl);g"
+        - "s;IMAGE;$(inputs.params.imageUrl):$(inputs.params.imageTag);g"
         - "$(inputs.resources.git-source.path)/$(inputs.params.pathToContext)/$(inputs.params.pathToYamlFile)"
     - name: deploy-app
       image: lachlanevenson/k8s-kubectl

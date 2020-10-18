@@ -40,3 +40,4 @@ serviceaccount/ingress-nginx-admission unchanged
 Ingress: delete
 Ingress: delete
 cicd: install
+cicd: install
