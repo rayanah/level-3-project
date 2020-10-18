@@ -53,7 +53,7 @@ spec:
   rules:
   - http:
       paths:
-      - path: /order
+      - path: /
         backend:
           serviceName: order
           servicePort: 80
