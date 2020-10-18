@@ -11,4 +11,4 @@ spec:
     targetPort: 8079
     nodePort: 30001
   selector:
-    name: front-end
+    app: front-end
