@@ -1,0 +1,60 @@
+--- 
+apiVersion: apps/v1 
+kind: Deployment
+metadata:
+  name: orders
+  labels:
+    app: order
+spec:
+  replicas: 1 
+  selector:
+    matchLabels:
+      app: order
+  template:
+    metadata:
+      labels:
+        app: order
+    spec:
+      containers:
+      - name: order
+        image: rayanah/orders
+        resources:
+          limits:
+            cpu: 300m
+            memory: 1000Mi
+          requests:
+            cpu: 100m
+            memory: 300Mi
+        ports:
+        - containerPort: 80
+      nodeSelector:
+        beta.kubernetes.io/os: linux
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: order
+  labels:
+    app: order
+spec:
+  type: NodePort
+  ports:
+  - port: 80
+    targetPort: 80
+    nodePort: 30004
+  selector:
+    app: order
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: order-ingress
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /order
+        backend:
+          serviceName: order
+          servicePort: 80
+
