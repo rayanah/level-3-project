@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: cart
-        image: rayanah/cart
+        image: rayanah/carts
         resources:
           limits:
             cpu: 300m
