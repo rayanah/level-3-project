@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:experimental
-FROM  maven:3.3-jdk-8 as build
+FROM  maven:3-jdk-8 as build
 
 WORKDIR /carts
 
@@ -30,8 +30,8 @@ LABEL org.label-schema.vendor="rayanah" \
   org.label-schema.version="${BUILD_VERSION}" \
   org.label-schema.name="Socks Shop: Cart" \
   org.label-schema.description="REST API for Cart service" \
-  org.label-schema.url="https://github.com/microservices-demo/carts" \
-  org.label-schema.vcs-url="github.com:microservices-demo/carts.git" \
+  org.label-schema.url="https://github.com/rayanah/carts" \
+  org.label-schema.vcs-url="github.com:rayanah/carts.git" \
   org.label-schema.vcs-ref="${COMMIT}" \
   org.label-schema.schema-version="1.0"
 

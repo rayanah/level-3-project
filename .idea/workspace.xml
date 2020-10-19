@@ -3,20 +3,53 @@
   <component name="ChangeListManager">
     <list default="true" id="cd83eafc-6ca7-4983-bae3-726eadc839b9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/queue-master/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/queue-master/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/carts/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/carts/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/carts/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/carts/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
+  <component name="ProjectId" id="1j6jJjjE22uFEffEyIaLkEFpmcf" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="cd83eafc-6ca7-4983-bae3-726eadc839b9" name="Default Changelist" comment="" />
+      <created>1603131370540</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1603131370540</updated>
+    </task>
     <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="440" y="267" width="549" height="400" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1603131454406">
+      <screen x="0" y="27" width="1440" height="873" />
+    </state>
+    <state x="440" y="267" width="549" height="400" key="#com.intellij.fileTypes.FileTypeChooser/0.27.1440.873@0.27.1440.873" timestamp="1603131454406" />
+    <state x="334" y="155" width="762" height="623" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1603135137975">
+      <screen x="0" y="27" width="1440" height="873" />
+    </state>
+    <state x="334" y="155" width="762" height="623" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.27.1440.873@0.27.1440.873" timestamp="1603135137975" />
   </component>
 </project>
