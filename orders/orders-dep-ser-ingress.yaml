@@ -18,6 +18,11 @@ spec:
       containers:
       - name: order
         image: rayanah/orders
+        env:
+         - name: ZIPKIN
+           value: zipkin.jaeger.svc.cluster.local
+         - name: JAVA_OPTS
+           value: -Xms64m -Xmx128m -XX:PermSize=32m -XX:MaxPermSize=64m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom
         resources:
           limits:
             cpu: 300m
@@ -27,6 +32,22 @@ spec:
             memory: 300Mi
         ports:
         - containerPort: 80
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 10001
+          capabilities:
+            drop:
+              - all
+            add:
+              - NET_BIND_SERVICE
+          readOnlyRootFilesystem: true
+        volumeMounts:
+        - mountPath: /tmp
+          name: tmp-volume
+      volumes:
+        - name: tmp-volume
+          emptyDir:
+            medium: Memory
       nodeSelector:
         beta.kubernetes.io/os: linux
 ---
@@ -37,24 +58,9 @@ metadata:
   labels:
     app: order
 spec:
-  type: NodePort
   ports:
   - port: 80
     targetPort: 80
-    nodePort: 30004
   selector:
     app: order
 ---
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  name: order-ingress
-spec:
-  rules:
-  - http:
-      paths:
-      - path: /
-        backend:
-          serviceName: order
-          servicePort: 80
-
