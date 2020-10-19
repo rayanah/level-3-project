@@ -21,7 +21,7 @@ user-image:
 
 catalogue-image:
 	kubectl create -f catalogue/tektonDockerPush/serviceaccount.yaml -f catalogue/tektonDockerPush/pipelinerun.yaml\
-	-f catalogue/tektonDockerPush/task.yaml catalogue/tektonDockerPush/run.yaml -n test
+	-f catalogue/tektonDockerPush/task.yaml -f catalogue/tektonDockerPush/run.yaml -n test
 
 payment-image:
 	kubectl create -f payment/tektonDockerPush/serviceaccount.yaml -f payment/tektonDockerPush/pipelinerun.yam\
