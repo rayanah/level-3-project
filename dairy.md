@@ -18,7 +18,7 @@
 ###### **finish day 4**
 
 ## Day 5
- Continue with Dockerfiles and Done finaly from pushing the images.
+ Continue with Dockerfiles and Done finaly from pushing the images for all microservices.
 
 ###### **finish day 5 Successfuly**
 
@@ -28,14 +28,19 @@
 ###### **finish day 6**
 
 ## Day 7
- Suffering from using k8s with the microservices, starting with front end. and the front end stubborn to work.
+ Suffering from using k8s with the microservices, starting with front end. and the front-end stubborn to work.
 
 
 ## Day 8
- Still working in front end to deploy with k8s.
+ Still working in front-end to deploy with k8s.
 
 
 ## Day 9
- Finally the front end work from stuppid mistake. Shame to mension it,all the three days wasted, becuase the selector label are diffrent in the Deployement and Service. Next after finish from k8, try to deploy the front-end by tekton.
+ Finally the front end work from stuppid mistake. Shame to mension it,all the three days wasted, becuase the selector label are diffrent in the Deployement and Service, that should be identical labels
 
+## Day 10
+
+I'am happy for today.I have the microservices work with k8s(orders/orders-db/catalouge/catalouge-db/carts/carts-db,payment).
+I had some problem with Catalogue and Payment thay was crash immedeatly,it's was strange in the biginning, But I used k8s logs and describe to understand the error why is happing, it shows tha I  got port 80 permission denied. In the begging I thought it was the wrong ports. But I search and show that I have to give the container "root as user" to work. so I delete the pods and build it again and the result was runnuing successfully :D thanks god. 
+Also I had problem in Carts and it was old file, I didn't make push for the Carts before couble of days in githup, i know that becuase the error was familiar  :).
 
