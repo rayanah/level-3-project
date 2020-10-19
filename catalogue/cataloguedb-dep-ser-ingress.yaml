@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: catalogue-db
-        image: weaveworksdemos/catalogue-db:0.3.0
+        image: rayanah/catalogue-db
         env:
           - name: MYSQL_ROOT_PASSWORD
             value: fake_password
@@ -43,24 +43,10 @@ metadata:
   labels:
     app: catalogue-db
 spec:
-  type: NodePort
   ports:
   - port: 80
     targetPort: 80
-    nodePort: 30007
   selector:
     app: catalogue-db
 ---
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  name: catalogue-db-ingress
-spec:
-  rules:
-  - http:
-      paths:
-      - path: /
-        backend:
-          serviceName: catalogue-db
-          servicePort: 80
 

@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: catalogue
-        image: weaveworksdemos/catalogue:0.3.5
+        image: rayanah/catalogue
         resources:
           limits:
             cpu: 300m
@@ -38,24 +38,9 @@ metadata:
   labels:
     app: catalogue
 spec:
-  type: NodePort
   ports:
   - port: 80
     targetPort: 80
-    nodePort: 30002
   selector:
     app: catalogue
 ---
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  name: catalogue-ingress
-spec:
-  rules:
-  - http:
-      paths:
-      - path: /catalogue
-        backend:
-          serviceName: catalogue
-          servicePort: 80
-
