@@ -15,7 +15,7 @@ spec:
     default: /workspace/level-3-project/catalogue/docker/catalogue-db/Dockerfile
   - name: CONTEXT
     description: The build context used by Kaniko.
-    default: /workspace/level-3-project/catalogue
+    default: /workspace/level-3-project/catalogue/docker/catalogue-db
   - name: EXTRA_ARGS
     default: ""
   - name: BUILDER_IMAGE
