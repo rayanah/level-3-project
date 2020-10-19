@@ -21,13 +21,29 @@ spec:
         image: rayanah/catalogue
         resources:
           limits:
-            cpu: 300m
-            memory: 1000Mi
+            cpu: 100m
+            memory: 100Mi
           requests:
             cpu: 100m
-            memory: 300Mi
+            memory: 100Mi
         ports:
         - containerPort: 80
+        securityContext:
+          allowPrivilegeEscalation: false
+          runAsUser: 0
+          readOnlyRootFilesystem: true
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 80
+          initialDelaySeconds: 300
+          periodSeconds: 3
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 80
+          initialDelaySeconds: 180
+          periodSeconds: 3
       nodeSelector:
         beta.kubernetes.io/os: linux
 ---
