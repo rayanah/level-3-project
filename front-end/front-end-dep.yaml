@@ -58,4 +58,3 @@ spec:
         backend:
           serviceName: front-end
           servicePort: 80
-
