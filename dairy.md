@@ -41,6 +41,6 @@
 ## Day 10
 
 I'am happy for today.I have deploy the microservices with k8s(orders/orders-db/catalouge/catalouge-db/carts/carts-db/payment/shipping).
-I had some problem with Catalogue and Payment thay was crash immedeatly,it's was strange in the biginning, But I used k8s logs and describe to understand the error why is happing, it shows tha I  got port 80 permission denied. In the begging I thought it was the wrong ports. But I search and show that I have to give the container "root as user" to work. so I delete the pods and build it again and the result was runnuing successfully :D thanks god. 
+I had some problem with Catalogue and Payment thay was crash immedeatly,it's was strange in the biginning, But I used k8s logs and describe to understand the error why is happing, it shows tha I  got port 80 permission denied. In the begging I thought it was the wrong ports. But I search and show that I have to give the container "root as user" to work ,i search for other solution like Setcap but i didn't know how to use it in the yaml file, but i think root thing solution is temporary. so I delete the pods and build it again and the result was runnuing successfully :D thanks god. 
 Also I had problem in Carts and it was old file, I didn't make push for the Carts before couble of days in githup, i know that becuase the error was familiar  :).
 
