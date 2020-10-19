@@ -2,59 +2,54 @@
 apiVersion: apps/v1 
 kind: Deployment
 metadata:
-  name: cart
+  name: cart-db
   labels:
-    app: cart
+    app: cart-db
 spec:
   replicas: 1 
   selector:
     matchLabels:
-      app: cart
+      app: cart-db
   template:
     metadata:
       labels:
-        app: cart
+        app: cart-db
     spec:
       containers:
-      - name: cart
-        image: rayanah/carts
-        resources:
-          limits:
-            cpu: 300m
-            memory: 1000Mi
-          requests:
-            cpu: 100m
-            memory: 300Mi
+      - name: carts-db
+        image: mongo
         ports:
-        - containerPort: 80
+        - name: mongo
+          containerPort: 27017
+        securityContext:
+          capabilities:
+            drop:
+              - all
+            add:
+              - CHOWN
+              - SETGID
+              - SETUID
+          readOnlyRootFilesystem: true
+        volumeMounts:
+        - mountPath: /tmp
+          name: tmp-volume
+      volumes:
+        - name: tmp-volume
+          emptyDir:
+            medium: Memory
       nodeSelector:
         beta.kubernetes.io/os: linux
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: cart
+  name: cart-db
   labels:
-    app: cart
+    app: cart-db
 spec:
-  type: NodePort
   ports:
-  - port: 80
-    targetPort: 80
-    nodePort: 30003
+  - port: 27017
+    targetPort: 27017
   selector:
-    app: cart
+    app: cart-db
 ---
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  name: cart-ingress
-spec:
-  rules:
-  - http:
-      paths:
-      - path: /cart
-        backend:
-          serviceName: cart
-          servicePort: 80
-
