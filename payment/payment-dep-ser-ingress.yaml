@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: payment
-        image: weaveworksdemos/payment:0.4.3
+        image: rayanah/payment
         resources:
           limits:
             cpu: 300m
@@ -35,8 +35,19 @@ spec:
               - all
             add:
               - NET_BIND_SERVICE
-      nodeSelector:
-        beta.kubernetes.io/os: linux
+          readOnlyRootFilesystem: true
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 80
+          initialDelaySeconds: 300
+          periodSeconds: 3
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 80
+          initialDelaySeconds: 180
+          periodSeconds: 3
 ---
 apiVersion: v1
 kind: Service
@@ -45,23 +56,10 @@ metadata:
   labels:
     app: payment
 spec:
-  type: NodePort
   ports:
   - port: 80
     targetPort: 80
   selector:
     app: payment
 ---
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  name: payment-ingress
-spec:
-  rules:
-  - http:
-      paths:
-      - path: /
-        backend:
-          serviceName: payment
-          servicePort: 80
 
