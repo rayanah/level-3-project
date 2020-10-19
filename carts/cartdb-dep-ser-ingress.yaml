@@ -2,18 +2,18 @@
 apiVersion: apps/v1 
 kind: Deployment
 metadata:
-  name: cart-db
+  name: carts-db
   labels:
-    app: cart-db
+    app: carts-db
 spec:
   replicas: 1 
   selector:
     matchLabels:
-      app: cart-db
+      app: carts-db
   template:
     metadata:
       labels:
-        app: cart-db
+        app: carts-db
     spec:
       containers:
       - name: carts-db
@@ -43,13 +43,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: cart-db
+  name: carts-db
   labels:
-    app: cart-db
+    app: carts-db
 spec:
   ports:
   - port: 27017
     targetPort: 27017
   selector:
-    app: cart-db
+    app: carts-db
 ---

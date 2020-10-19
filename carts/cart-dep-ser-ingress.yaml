@@ -16,7 +16,7 @@ spec:
         app: cart
     spec:
       containers:
-      - name: carts
+      - name: cart
         image: rayanah/carts
         env:
          - name: ZIPKIN
@@ -52,8 +52,6 @@ spec:
         - name: tmp-volume
           emptyDir:
             medium: Memory
-      nodeSelector:
-        beta.kubernetes.io/os: linux
 ---
 apiVersion: v1
 kind: Service
