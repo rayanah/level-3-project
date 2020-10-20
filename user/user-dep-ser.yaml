@@ -49,13 +49,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: cart
+  name: user
   labels:
-    app: cart
+    app: user
 spec:
   ports:
   - port: 80
     targetPort: 80
   selector:
-    app: cart
+    app: user
 ---
