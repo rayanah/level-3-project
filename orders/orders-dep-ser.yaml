@@ -4,19 +4,19 @@ kind: Deployment
 metadata:
   name: orders
   labels:
-    app: order
+    app: orders
 spec:
   replicas: 1 
   selector:
     matchLabels:
-      app: order
+      app: orders
   template:
     metadata:
       labels:
-        app: order
+        app: orders
     spec:
       containers:
-      - name: order
+      - name: orders
         image: rayanah/orders
         env:
          - name: ZIPKIN
@@ -54,13 +54,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: order
+  name: orders
   labels:
-    app: order
+    app: orders
 spec:
   ports:
   - port: 80
     targetPort: 80
   selector:
-    app: order
+    app: orders
 ---

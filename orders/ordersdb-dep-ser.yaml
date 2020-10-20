@@ -36,8 +36,6 @@ spec:
         - name: tmp-volume
           emptyDir:
             medium: Memory
-      nodeSelector:
-        beta.kubernetes.io/os: linux
 ---
 apiVersion: v1
 kind: Service
@@ -51,5 +49,5 @@ spec:
   - port: 27017
     targetPort: 27017
   selector:
-    name: orders-db
+    app: orders-db
 ---
