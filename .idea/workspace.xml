@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="cd83eafc-6ca7-4983-bae3-726eadc839b9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/carts/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/carts/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/carts/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/carts/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
