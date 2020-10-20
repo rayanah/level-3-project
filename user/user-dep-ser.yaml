@@ -2,27 +2,25 @@
 apiVersion: apps/v1 
 kind: Deployment
 metadata:
-  name: cart
+  name: user
   labels:
-    app: cart
+    app: user
 spec:
   replicas: 1 
   selector:
     matchLabels:
-      app: cart
+      app: user
   template:
     metadata:
       labels:
-        app: cart
+        app: user
     spec:
       containers:
-      - name: cart
-        image: rayanah/carts
+      - name: user
+        image: rayanah/user
         env:
-         - name: ZIPKIN
-           value: zipkin.jaeger.svc.cluster.local
-         - name: JAVA_OPTS
-           value: -Xms64m -Xmx128m -XX:PermSize=32m -XX:MaxPermSize=64m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom
+         - name: mongo
+           value: user-db:27017
         ports:
         - containerPort: 80
         securityContext:
@@ -33,9 +31,6 @@ spec:
             add:
               - NET_BIND_SERVICE
           readOnlyRootFilesystem: true
-        volumeMounts:
-        - mountPath: /tmp
-          name: tmp-volume
         livenessProbe:
           httpGet:
             path: /health
@@ -48,10 +43,8 @@ spec:
             port: 80
           initialDelaySeconds: 180
           periodSeconds: 3
-      volumes:
-        - name: tmp-volume
-          emptyDir:
-            medium: Memory
+      nodeSelector:
+        beta.kubernetes.io/os: linux
 ---
 apiVersion: v1
 kind: Service

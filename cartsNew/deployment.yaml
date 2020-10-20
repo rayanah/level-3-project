@@ -2,44 +2,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: shipping
+  name: carts
   labels:
-    app: shipping
+    app: carts
+  namespace: test
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: shipping
+      app: carts
   template:
     metadata:
       labels:
-        app: shipping
+        app: carts
     spec:
       containers:
-      - name: shipping
-        image: rayanah/shipping
+      - name: carts
+        image: manarabdulrahman/sock-cart 
         env:
          - name: ZIPKIN
            value: zipkin.jaeger.svc.cluster.local
          - name: JAVA_OPTS
            value: -Xms64m -Xmx128m -XX:PermSize=32m -XX:MaxPermSize=64m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom
-        resources:
-          limits:
-            cpu: 300m
-            memory: 500Mi
-          requests:
-            cpu: 300m
-            memory: 500Mi
-        ports:
-        - containerPort: 8080
         securityContext:
-          allowPrivilegeEscalation: false
           runAsUser: 0
-          capabilities:
-            drop:
-              - all
-            add:
-              - NET_BIND_SERVICE
           readOnlyRootFilesystem: true
         volumeMounts:
         - mountPath: /tmp
@@ -66,12 +52,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: shipping
+  name: carts
   labels:
-    app: shipping
+    app: carts
+  namespace: test
 spec:
   ports:
   - port: 80
-    targetPort: 8080
+    targetPort: 80
   selector:
-    app: shipping
+    app: carts
