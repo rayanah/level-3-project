@@ -1,12 +1,24 @@
 
 up: 
 	cd k8s-sandbox && make up && make install-cicd
+k8s: front-end-k8s catalogue-k8s cart-k8s orders-k8s payment-k8s shipping-k8s
 
 front-end-k8s:
 	cd front-end && kubectl create -f front-end-dep.yaml -n test && cd ..
 
 catalogue-k8s:
-	cd catalogue && kubectl create -f catalogue-dep-ser.yaml -n test 
+	cd catalogue && kubectl create -f catalogue-dep-ser.yaml -f cataloguedb-dep-ser.yaml -n test
+cart-k8s:
+	cd carts && kubectl create -f cart-dep-ser.yaml -f cartdb-dep-ser.yaml -n test
+orders-k8s:
+	cd orders && kubectl create -f orders-dep-ser.yaml -f ordersdb-dep-ser.yaml -n test
+payment-k8s:
+	cd payment && kubectl create -f payment-dep-ser.yaml -n test
+shipping-k8s:
+	cd shipping && kubectl create -f shipping-dep-ser.yaml -n test
+
+push-images: secret-dockerhup e2e-tests-image front-end-image user-image catalogue-image payment-image shipping-image carts-image queue-master-image orders-image load-test-image
+
 secret-dockerhup:
 	docker login
 	kubectl create secret generic regcred \
@@ -30,7 +42,7 @@ catalogue-image:
 
 payment-image:
 	kubectl create -f payment/tektonDockerPush/serviceaccount.yaml -f payment/tektonDockerPush/pipelinerun.yam\
-	l -f payment/tektonDockerPush/task.yaml -f patment/tektonDockerPush/run.yaml -n test
+	l -f payment/tektonDockerPush/task.yaml -f payment/tektonDockerPush/run.yaml -n test
 
 shipping-image:
 	kubectl create -f shipping/tektonDockerPush/serviceaccount.yaml -f shipping/tektonDockerPush/pipelinerun.yaml\
