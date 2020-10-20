@@ -2,6 +2,11 @@
 up: 
 	cd k8s-sandbox && make up && make install-cicd
 
+front-end-k8s:
+	cd front-end && kubectl create -f front-end-dep.yaml -n test && cd ..
+
+catalogue-k8s:
+	cd catalogue && kubectl create -f catalogue-dep-ser.yaml -n test 
 secret-dockerhup:
 	docker login
 	kubectl create secret generic regcred \
