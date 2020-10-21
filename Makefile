@@ -1,6 +1,6 @@
 
 up: 
-	cd k8s-sandbox && make up && make install-cicd k8s  
+	cd k8s-sandbox && make up && make install-cicd && cd .. && make k8s  
 k8s: front-end-k8s catalogue-k8s cart-k8s orders-k8s payment-k8s shipping-k8s user-k8s 
 
 front-end-k8s:
@@ -9,7 +9,7 @@ front-end-k8s:
 catalogue-k8s:
 	cd catalogue && kubectl create -f catalogue-dep-ser.yaml -f cataloguedb-dep-ser.yaml -n test
 cart-k8s:
-	cd carts && kubectl create -f cart-dep-ser.yaml -f cartdb-dep-ser.yaml -n test
+	cd cart && kubectl create -f cart-dep-ser.yaml -f cartdb-dep-ser.yaml -n test
 orders-k8s:
 	cd orders && kubectl create -f orders-dep-ser.yaml -f ordersdb-dep-ser.yaml -n test
 payment-k8s:
