@@ -2,7 +2,7 @@ version: '2'
 
 services:
   edge-router:
-    image: weaveworksdemos/edge-router
+    image: rayanah/edge-router
     ports:
       - '80:80'
     hostname: edge-router
@@ -10,13 +10,13 @@ services:
     environment:
       - reschedule:on-node-failure
   catalogue:
-    image: weaveworksdemos/catalogue
+    image: rayanah/catalogue
     hostname: catalogue
     restart: always
     environment:
       - reschedule:on-node-failure
   catalogue-db:
-    image: weaveworksdemos/catalogue-db
+    image: rayanah/catalogue-db
     hostname: catalogue-db
     restart: always
     environment:
@@ -24,7 +24,7 @@ services:
       - MYSQL_ALLOW_EMPTY_PASSWORD=true
       - MYSQL_DATABASE=socksdb
   carts:
-    image: weaveworksdemos/carts
+    image: rayanah/carts
     hostname: carts
     restart: always
     environment:
@@ -36,7 +36,7 @@ services:
     environment:
       - reschedule:on-node-failure
   orders:
-    image: weaveworksdemos/orders
+    image: rayanah/orders
     hostname: orders
     restart: always
     environment:
@@ -48,13 +48,13 @@ services:
     environment:
       - reschedule:on-node-failure
   shipping:
-    image: weaveworksdemos/shipping
+    image: rayanah/shipping
     hostname: shipping
     restart: always
     environment:
       - reschedule:on-node-failure
   queue-master:
-    image: weaveworksdemos/queue-master
+    image: rayanah/queue-master
     hostname: queue-master
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
@@ -68,7 +68,7 @@ services:
     environment:
       - reschedule:on-node-failure
   payment:
-    image: weaveworksdemos/payment
+    image: rayanah/payment
     hostname: payment
     restart: always
     environment:
@@ -79,14 +79,14 @@ services:
       - -port=80
       - -decline=999
   user:
-    image: weaveworksdemos/user
+    image: rayanah/user
     hostname: user
     restart: always
     environment:
       - MONGO_HOST=user-db:27017
       - reschedule=on-node-failure
   user-db:
-    image: weaveworksdemos/user-db
+    image: rayanah/user-db
     hostname: user-db
     restart: always
     environment:
