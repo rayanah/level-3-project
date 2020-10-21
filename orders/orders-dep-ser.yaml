@@ -1,12 +1,12 @@
---- 
-apiVersion: apps/v1 
+---
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: orders
   labels:
     app: orders
 spec:
-  replicas: 1 
+  replicas: 1
   selector:
     matchLabels:
       app: orders
@@ -25,11 +25,11 @@ spec:
            value: -Xms64m -Xmx128m -XX:PermSize=32m -XX:MaxPermSize=64m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom
         resources:
           limits:
-            cpu: 300m
-            memory: 1000Mi
+            cpu: 500m
+            memory: 500Mi
           requests:
-            cpu: 100m
-            memory: 300Mi
+            cpu: 200m
+            memory: 500Mi
         ports:
         - containerPort: 80
         securityContext:
@@ -44,12 +44,22 @@ spec:
         volumeMounts:
         - mountPath: /tmp
           name: tmp-volume
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 80
+          initialDelaySeconds: 300
+          periodSeconds: 3
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 80
+          initialDelaySeconds: 180
+          periodSeconds: 3
       volumes:
         - name: tmp-volume
           emptyDir:
             medium: Memory
-      nodeSelector:
-        beta.kubernetes.io/os: linux
 ---
 apiVersion: v1
 kind: Service
@@ -63,4 +73,3 @@ spec:
     targetPort: 80
   selector:
     app: orders
----
