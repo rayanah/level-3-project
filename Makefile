@@ -50,8 +50,8 @@ shipping-image:
 	 -f shipping/tektonDockerPush/task.yaml -f shipping/tektonDockerPush/run.yaml -n test
 
 carts-image:
-	kubectl create -f carts/tektonDockerPush/serviceaccount.yaml -f carts/tektonDockerPush/pipelinerun.yaml\
-	 -f carts/tektonDockerPush/task.yaml -f carts/tektonDockerPush/run.yaml -n test
+	kubectl create -f cart/tektonDockerPush/serviceaccount.yaml -f cart/tektonDockerPush/pipelinerun.yaml\
+	 -f cart/tektonDockerPush/task.yaml -f cart/tektonDockerPush/run.yaml -n test
 
 queue-master-image:
 	  kubectl create -f queue-master/tektonDockerPush/serviceaccount.yaml -f queue-master/tektonDockerPush/pipelinerun.yaml\
