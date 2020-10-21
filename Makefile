@@ -49,7 +49,7 @@ shipping-image:
 	kubectl create -f shipping/tektonDockerPush/serviceaccount.yaml -f shipping/tektonDockerPush/pipelinerun.yaml\
 	 -f shipping/tektonDockerPush/task.yaml -f shipping/tektonDockerPush/run.yaml -n test
 
-carts-image:
+cart-image:
 	kubectl create -f cart/tektonDockerPush/serviceaccount.yaml -f cart/tektonDockerPush/pipelinerun.yaml\
 	 -f cart/tektonDockerPush/task.yaml -f cart/tektonDockerPush/run.yaml -n test
 
