@@ -1,11 +1,14 @@
 
+
 up: 
 	cd k8s-sandbox && make up && make install-cicd && cd .. && make k8s  
+
 k8s: front-end-k8s catalogue-k8s cart-k8s orders-k8s payment-k8s shipping-k8s user-k8s 
 
 front-end-k8s:
 	cd front-end && kubectl create -f front-end-dep.yaml -n test && cd ..
-
+user-k8s:
+	cd user && kubectl create -f user-dep-ser.yaml -f userdb-dep-ser.yaml -n test
 catalogue-k8s:
 	cd catalogue && kubectl create -f catalogue-dep-ser.yaml -f cataloguedb-dep-ser.yaml -n test
 cart-k8s:
@@ -16,8 +19,9 @@ payment-k8s:
 	cd payment && kubectl create -f payment-dep-ser.yaml -n test
 shipping-k8s:
 	cd shipping && kubectl create -f shipping-dep-ser.yaml -n test
-user-k8s:
-	cd user && kubectl create -f user-dep-ser.yaml -f userdb-dep-ser.yaml -n test
+queue-master-k8s:
+	cd queue-master && kubectl create -f queue-master-dep-ser.yaml -f rabbit-master-dep-ser.yaml -n test
+
 push-images: secret-dockerhup e2e-tests-image front-end-image user-image catalogue-image payment-image shipping-image carts-image queue-master-image orders-image load-test-image
 
 secret-dockerhup:
