@@ -28,7 +28,7 @@ WORKDIR ./queue
 
 COPY --from=build /queue/target/queue-master.jar ./queue-master.jar
 
-RUN	chown -R ${SERVICE_USER}:${SERVICE_GROUP} ./queue-master.jar
+#RUN	chown -R ${SERVICE_USER}:${SERVICE_GROUP} ./queue-master.jar
 
 USER ${SERVICE_USER}
 
