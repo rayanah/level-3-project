@@ -33,9 +33,6 @@ spec:
         ports:
         - containerPort: 80
         securityContext:
-          allowPrivilegeEscalation: false
-          runAsUser: 0
-          readOnlyRootFilesystem: true
           capabilities:
             drop:
               - all
@@ -60,6 +57,8 @@ metadata:
   name: queue-master
   labels:
     app: queue-master
+  annotations:
+    prometheus.io/path: "/prometheus"
 spec:
   ports:
   - port: 80
