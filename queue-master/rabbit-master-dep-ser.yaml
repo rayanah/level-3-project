@@ -2,18 +2,18 @@
 apiVersion: apps/v1 
 kind: Deployment
 metadata:
-  name: queue-master
+  name: rabbitmq
   labels:
-    app: queue-master
+    app: rabbitmq
 spec:
   replicas: 1 
   selector:
     matchLabels:
-      app: queue-master
+      app: rabbitmq
   template:
     metadata:
       labels:
-        app: queue-master
+        app: rabbitmq
     spec:
       containers:
       - name: rabbitmq
