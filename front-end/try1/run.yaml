@@ -3,7 +3,7 @@ kind: TaskRun
 metadata:
   name: front-end-run-images
 spec:
-  serviceAccountName: front-end-deploy
+  serviceAccountName: sock-shop
   taskRef:
     name: front-end
   resources:
