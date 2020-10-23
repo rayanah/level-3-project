@@ -7,15 +7,7 @@ spec:
     - name: final
       type: git
   tasks:
-    - name: build
-      taskRef:
-        name: carts-db
-      resources:
-        inputs: 
-        - name: carts-db-pr
-          resource: final
     - name: carts-db-deploy-kubectl
-      runAfter: ["build"]
       taskRef:
         name: carts-db-deploy-kubectl
       resources:
