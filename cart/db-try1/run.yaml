@@ -1,16 +1,16 @@
 apiVersion: tekton.dev/v1beta1
 kind: TaskRun
 metadata:
-  name: carts-run-images
+  name: carts-db-run-images
 spec:
   serviceAccountName: sock-shop
   taskRef:
-    name: carts
+    name: carts-db
   resources:
     inputs:
-    - name: carts-pr
+    - name: carts-db-pr
       resourceRef:
-        name: carts-pr
+        name: carts-db-pr
   params:
     - name: IMAGE
-      value: "rayanah/carts"
+      value: "mongo"
