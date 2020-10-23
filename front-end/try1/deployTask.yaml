@@ -10,7 +10,7 @@ spec:
       description: The path to the yaml file to deploy within the git source
       default: workspace/level-3-project/front-end/front-end-dep.yaml
     - name: namespace
-      default: prod
+      default: test
   resources:
     inputs:
       - name: front-end-pr
