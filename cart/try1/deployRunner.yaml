@@ -1,0 +1,9 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: carts-end-run
+spec:
+  serviceAccountName: carts-deploy
+  taskRef:
+    name: carts-deploy-kubectl
+

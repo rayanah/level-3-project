@@ -42,8 +42,8 @@ user-image:
 	kubectl create -f user/tektonDockerPush/serviceaccount.yaml -f user/tektonDockerPush/pipelinerun.yaml\
 	 -f user/tektonDockerPush/task.yaml -f user/tektonDockerPush/run.yaml -n test
 
-catalogue-image:
-	kubectl create -f catalogue/try1/pipelineResource.yaml f catalogue/try1/task.yaml -f catalogue/try1/run.yaml -f catalogue/try1/deployTask.yaml \
+catalogue-all:
+	kubectl create -f catalogue/try1/pipelineResource.yaml -f catalogue/try1/task.yaml -f catalogue/try1/run.yaml -f catalogue/try1/deployTask.yaml \
         -f catalogue/try1/deployRunner.yaml -f catalogue/try1/pipeline.yaml -f catalogue/try1/pipelineRun.yaml -n test
 
 payment-image:
@@ -55,8 +55,8 @@ shipping-image:
 	 -f shipping/tektonDockerPush/task.yaml -f shipping/tektonDockerPush/run.yaml -n test
 
 cart-image:
-	kubectl create -f cart/tektonDockerPush/serviceaccount.yaml -f cart/tektonDockerPush/pipelinerun.yaml\
-	 -f cart/tektonDockerPush/task.yaml -f cart/tektonDockerPush/run.yaml -n test
+	kubectl create -f cart/try1/pipelineResource.yaml -f cart/try1/task.yaml -f cart/try1/run.yaml -f cart/try1/deployTask.yaml \
+        -f cart/try1/deployRunner.yaml -f cart/try1/pipeline.yaml -f cart/try1/pipelineRun.yaml -n test
 
 queue-master-image:
 	  kubectl create -f queue-master/tektonDockerPush/serviceaccount.yaml -f queue-master/tektonDockerPush/pipelinerun.yaml\

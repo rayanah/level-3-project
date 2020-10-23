@@ -1,0 +1,24 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: carts-pipeline
+spec:
+  resources:
+    - name: final
+      type: git
+  tasks:
+    - name: build
+      taskRef:
+        name: carts
+      resources:
+        inputs: 
+        - name: carts-pr
+          resource: final
+    - name: carts-deploy-kubectl
+      runAfter: ["build"]
+      taskRef:
+        name: carts-deploy-kubectl
+      resources:
+        inputs:
+        - name: carts-pr
+          resource: final

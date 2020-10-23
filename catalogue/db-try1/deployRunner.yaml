@@ -1,0 +1,9 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: catalogue-db-run
+spec:
+  serviceAccountName: catalogue-db-deploy
+  taskRef:
+    name: catalogue-db-deploy-kubectl
+

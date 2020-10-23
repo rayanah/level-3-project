@@ -1,0 +1,9 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: catalogue-end-run
+spec:
+  serviceAccountName: catalogue-deploy
+  taskRef:
+    name: catalogue-deploy-kubectl
+
