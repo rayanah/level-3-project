@@ -1,14 +1,14 @@
 apiVersion: tekton.dev/v1beta1
 kind: TaskRun
 metadata:
-  name: front-end-run
+  name: front-end-run-images
 spec:
   serviceAccountName: front-end-deploy
   taskRef:
     name: front-end
   resources:
     inputs:
-    - name: level-3-project
+    - name: front-end-pr
       resourceRef:
         name: front-end-pr
   params:

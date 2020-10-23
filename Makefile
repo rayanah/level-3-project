@@ -1,7 +1,7 @@
 
 
 up: 
-	cd k8s-sandbox && make up && make install-cicd && cd .. && make k8s  
+	cd k8s-sandbox && make up install-cicd install-ingress && cd .. && make k8s  
 
 k8s: front-end-k8s catalogue-k8s cart-k8s orders-k8s payment-k8s shipping-k8s user-k8s 
 
@@ -26,7 +26,7 @@ push-images: secret-dockerhup e2e-tests-image front-end-image user-image catalog
 
 secret-dockerhup:
 	docker login
-	kubectl create secret generic regcred \
+	kubectl create secret generic rayanah-secret \
 	 --from-file=.dockerconfigjson=/home/ubuntu/.docker/config.json \
  	--type=kubernetes.io/dockerconfigjson -n test
 e2e-tests-image:
@@ -35,7 +35,7 @@ e2e-tests-image:
 
 front-end-image:
 	kubectl create -f front-end/tektonDockerPush/serviceaccount.yaml -f front-end/tektonDockerPush/pipelinerun.yaml\
-	 -f front-end/tektonDockerPush/task.yam -f front-end/tektonDockerPush/run.yaml -n test
+	 -f front-end/tektonDockerPush/task.yaml -f front-end/tektonDockerPush/run.yaml -n test
 
 user-image:
 	kubectl create -f user/tektonDockerPush/serviceaccount.yaml -f user/tektonDockerPush/pipelinerun.yaml\
