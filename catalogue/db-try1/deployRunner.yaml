@@ -3,7 +3,7 @@ kind: TaskRun
 metadata:
   name: catalogue-db-run
 spec:
-  serviceAccountName: catalogue-db-deploy
+  serviceAccountName: sock-shop
   taskRef:
     name: catalogue-db-deploy-kubectl
 

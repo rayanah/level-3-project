@@ -4,7 +4,7 @@ metadata:
   name: sock-shop-role
 rules:
 - apiGroups: ["serving.knative.dev", "apps", "", "extensions"]
-  resources: ["services", "deployments", "deployments.apps", "replicasets", "pods"]
+  resources: ["services", "deployments", "deployments.apps", "replicasets", "pods", "ingresses"]
   verbs: ["get", "create", "update", "patch"]
 
 ---

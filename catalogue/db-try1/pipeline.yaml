@@ -14,10 +14,10 @@ spec:
         inputs: 
         - name: catalogue-db-pr
           resource: final
-    - name: catalogue-deploy-db-kubectl
+    - name: catalogue-db-deploy-kubectl
       runAfter: ["build"]
       taskRef:
-        name: catalogue-deploy-db-kubectl
+        name: catalogue-db-deploy-kubectl
       resources:
         inputs:
         - name: catalogue-db-pr
