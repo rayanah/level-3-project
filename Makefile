@@ -33,17 +33,18 @@ e2e-tests-image:
 	kubectl create -f e2e-tests/tektonDockerPush/serviceaccount.yaml -f e2e-tests/tektonDockerPush/pipelinerun.yaml\
         -f e2e-tests/tektonDockerPush/task.yaml -f e2e-tests/tektonDockerPush/run.yaml -n test
 
-front-end-image:
-	kubectl create -f front-end/tektonDockerPush/serviceaccount.yaml -f front-end/tektonDockerPush/pipelinerun.yaml\
-	 -f front-end/tektonDockerPush/task.yaml -f front-end/tektonDockerPush/run.yaml -n test
+front-end-all:
+	kubectl create -f sa.yaml -f role-binding.yaml -f front-end/try1/pipelineResource.yaml -f front-end/try1/task.yaml \
+	-f front-end/try1/run.yaml -f front-end/try1/deployTask.yaml -f front-end/try1/deployRunner.yaml -f front-end/try1/pipeline.yaml \
+	-f front-end/try1/pipelineRun.yaml -n test
 
 user-image:
 	kubectl create -f user/tektonDockerPush/serviceaccount.yaml -f user/tektonDockerPush/pipelinerun.yaml\
 	 -f user/tektonDockerPush/task.yaml -f user/tektonDockerPush/run.yaml -n test
 
 catalogue-image:
-	kubectl create -f catalogue/tektonDockerPush/serviceaccount.yaml -f catalogue/tektonDockerPush/pipelinerun.yaml\
-	-f catalogue/tektonDockerPush/task.yaml -f catalogue/tektonDockerPush/run.yaml -n test
+	kubectl create -f catalogue/try1/pipelineResource.yaml f catalogue/try1/task.yaml -f catalogue/try1/run.yaml -f catalogue/try1/deployTask.yaml \
+        -f catalogue/try1/deployRunner.yaml -f catalogue/try1/pipeline.yaml -f catalogue/try1/pipelineRun.yaml -n test
 
 payment-image:
 	kubectl create -f payment/tektonDockerPush/serviceaccount.yaml -f payment/tektonDockerPush/pipelinerun.yam\
