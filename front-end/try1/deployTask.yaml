@@ -1,0 +1,29 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: front-end-deploy-kubectl
+  serviceAccountName: front-end-deploy
+spec:
+  params:
+    - name: pathToYamlFile
+      type: string
+      description: The path to the yaml file to deploy within the git source
+      default: workspace/level-3-project/front-end/front-end-dep.yaml
+    - name: namespace
+      default: prod
+  resources:
+    inputs:
+      - name: front-end-pr
+        type: git
+  steps:
+   - name: run-kubectl
+     image: lachlanevenson/k8s-kubectl
+     command: ["kubectl"]
+     args:
+       - "apply"
+       - "-f"
+       - "$(params.pathToYamlFile)"
+       - "-f"
+       - "-n"
+       - "$(pasrm.namespace)"
+

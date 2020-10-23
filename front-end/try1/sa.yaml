@@ -1,0 +1,6 @@
+piVersion: v1
+kind: ServiceAccount
+metadata:
+  name: front-end-deploy
+secrets:
+  - name: rayanah_secret

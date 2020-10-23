@@ -1,0 +1,9 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: front-end-run
+spec:
+  serviceAccountName: front-end-deploy
+  taskRef:
+    name: front-end-deploy-kubectl
+

@@ -1,0 +1,12 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineRun
+metadata:
+  name: front-end-run
+spec:
+  serviceAccountName: front-end-deploy
+  pipelineRef:
+    name: front-end-pipeline 
+  resources:
+    - name: source
+      resourceRef:
+        name: front-end-pr

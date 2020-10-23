@@ -3,14 +3,14 @@ kind: TaskRun
 metadata:
   name: front-end-run
 spec:
-  serviceAccountName: front-end-run-docker-hub
+  serviceAccountName: front-end-deploy
   taskRef:
-    name: front-end-run
-  params:
-  - name: IMAGE
-    value: "rayanah/front-end"
+    name: front-end
   resources:
     inputs:
     - name: level-3-project
       resourceRef:
-        name: front-end-run
+        name: front-end-pr
+  params:
+    - name: IMAGE
+      value: "rayanah/front-end"
