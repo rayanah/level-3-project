@@ -13,4 +13,4 @@ spec:
         name: carts-db-pr
   params:
     - name: IMAGE
-      value: "mongo"
+      value: "rayanah/carts-db"
