@@ -2,6 +2,8 @@ FROM maven:3-jdk-8-slim AS base
 RUN mkdir -p /orders
 COPY . /orders
 WORKDIR  /orders
+RUN apt-get install curl
+RUN curl google.com 
 RUN mvn clean package
 
 

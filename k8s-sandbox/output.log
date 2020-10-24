@@ -1,5 +1,4 @@
 cicd: install
-cicd: install
 Ingress: install
 namespace/ingress-nginx configured
 serviceaccount/ingress-nginx created

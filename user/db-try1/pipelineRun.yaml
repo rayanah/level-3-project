@@ -9,4 +9,4 @@ spec:
   resources:
     - name: final
       resourceRef:
-        name: user-pr
+        name: user-db-pr
