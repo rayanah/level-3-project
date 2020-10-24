@@ -1,19 +1,19 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: user-deploy-kubectl
+  name: payment-deploy-kubectl
   serviceAccountName: sock-shop
 spec:
   params:
     - name: pathToYamlFile
       type: string
       description: The path to the yaml file to deploy within the git source
-      default: $(resources.inputs.user-pr.path)/user/user-dep-ser.yaml
+      default: $(resources.inputs.payment-pr.path)/payment/payment-dep-ser.yaml
     - name: namespace
       default: test
   resources:
     inputs:
-      - name: user-pr
+      - name: payment-pr
         type: git
   steps:
    - name: run-kubectl

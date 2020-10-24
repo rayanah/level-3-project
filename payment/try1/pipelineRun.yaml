@@ -1,0 +1,12 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineRun
+metadata:
+  name: payment-run
+spec:
+  serviceAccountName: sock-shop
+  pipelineRef:
+    name: payment-pipeline
+  resources:
+    - name: final
+      resourceRef:
+        name: payment-pr

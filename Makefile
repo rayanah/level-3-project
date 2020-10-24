@@ -38,11 +38,11 @@ front-end-all:
 	-f front-end/try1/run.yaml -f front-end/try1/deployTask.yaml -f front-end/try1/deployRunner.yaml -f front-end/try1/pipeline.yaml \
 	-f front-end/try1/pipelineRun.yaml -n test
 user-db:
-	kubectl delete -f user/db-try1/pipelineResource.yaml -f user/db-try1/task.yaml -f user/db-try1/run.yaml -f user/db-try1/deployTask.yaml \
+	kubectl create -f user/db-try1/pipelineResource.yaml -f user/db-try1/task.yaml -f user/db-try1/run.yaml -f user/db-try1/deployTask.yaml \
         -f user/db-try1/deployRunner.yaml -f user/db-try1/pipeline.yaml -f user/db-try1/pipelineRun.yaml -n test
 
 user-all:
-	kubectl delete -f user/try1/pipelineResource.yaml -f user/try1/task.yaml -f user/try1/run.yaml -f user/try1/deployTask.yaml\
+	kubectl create -f user/try1/pipelineResource.yaml -f user/try1/task.yaml -f user/try1/run.yaml -f user/try1/deployTask.yaml\
 	 -f user/try1/deployRunner.yaml -f user/try1/pipeline.yaml -f user/try1/pipelineRun.yaml -n test
 catalogue-db:
 	kubectl create -f catalogue/db-try1/pipelineResource.yaml -f catalogue/db-try1/task.yaml -f catalogue/db-try1/run.yaml\
@@ -58,7 +58,9 @@ orders-all:
 payment-image:
 	kubectl create -f payment/tektonDockerPush/serviceaccount.yaml -f payment/tektonDockerPush/pipelinerun.yam\
 	l -f payment/tektonDockerPush/task.yaml -f payment/tektonDockerPush/run.yaml -n test
-
+payment-all:
+	kubectl create -f payment/try1/pipelineResource.yaml -f payment/try1/task.yaml -f payment/try1/run.yaml -f payment/try1/deployTask.yaml \
+        -f payment/try1/deployRunner.yaml -f payment/try1/pipeline.yaml -f payment/try1/pipelineRun.yaml -n test
 shipping-image:
 	kubectl create -f shipping/tektonDockerPush/serviceaccount.yaml -f shipping/tektonDockerPush/pipelinerun.yaml\
 	 -f shipping/tektonDockerPush/task.yaml -f shipping/tektonDockerPush/run.yaml -n test

@@ -1,0 +1,16 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: payment-run-images
+spec:
+  serviceAccountName: payment-shop
+  taskRef:
+    name: payment
+  resources:
+    inputs:
+    - name: payment-pr
+      resourceRef:
+        name: payment-pr
+  params:
+    - name: IMAGE
+      value: "rayanah/payment"
