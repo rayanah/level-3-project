@@ -78,8 +78,8 @@ queue-master-image:
 	  kubectl create -f queue-master/tektonDockerPush/serviceaccount.yaml -f queue-master/tektonDockerPush/pipelinerun.yaml\
          -f queue-master/tektonDockerPush/task.yaml -f queue-master/tektonDockerPush/run.yaml -n test
 queue-master-all:
-	kubectl create -f queue-master/try1/pipelineResource.yaml -f queue-master/try1/task.yaml -f queue-master/try1/run.yaml 
-	-f queue-master/try1/deployTask.yaml  -f queue-master/try1/deployRunner.yaml -f queue-master/try1/pipeline.yaml /
+	kubectl create -f queue-master/try1/pipelineResource.yaml -f queue-master/try1/task.yaml -f queue-master/try1/run.yaml \
+	-f queue-master/try1/deployTask.yaml  -f queue-master/try1/deployRunner.yaml -f queue-master/try1/pipeline.yaml \
 	-f queue-master/try1/pipelineRun.yaml -n test 
 orders-image:
 	kubectl create -f orders/tektonDockerPush/serviceaccount.yaml -f orders/tektonDockerPush/pipelinerun.yaml\
