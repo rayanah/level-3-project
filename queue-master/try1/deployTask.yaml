@@ -8,11 +8,11 @@ spec:
     - name: pathToYamlFile
       type: string
       description: The path to the yaml file to deploy within the git source
-      default: $(resources.inputs.queue-pr.path)/queue/queue-master-dep-ser.yaml
+      default: $(resources.inputs.queue-pr.path)/queue-master/queue-master-dep-ser.yaml
     - name: pathToDbYamlFile
       type: string
       description: The path to the yaml file to deploy within the git source
-      default: $(resources.inputs.queue-pr.path)/queue/rabbit-master-dep-ser.yaml
+      default: $(resources.inputs.queue-pr.path)/queue-master/rabbit-master-dep-ser.yaml
     - name: namespace
       default: test
   resources:
