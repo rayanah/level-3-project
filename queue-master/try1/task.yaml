@@ -13,10 +13,10 @@ spec:
     default: "rayanah/queue-master"
   - name: DOCKERFILE
     description: Path to the Dockerfile to build.
-    default:  $(resources.inputs.queue-pr.path)/queue/Dockerfile
+    default:  $(resources.inputs.queue-pr.path)/queue-master/Dockerfile
   - name: CONTEXT
     description: The build context used by Kaniko.
-    default:  $(resources.inputs.queue-pr.path)/queue
+    default:  $(resources.inputs.queue-pr.path)/queue-master
   - name: EXTRA_ARGS
     default: ""
   - name: BUILDER_IMAGE
@@ -27,7 +27,7 @@ spec:
     description: Digest of the image just built.
   steps:
   - name: build-and-push
-    workingDir: $(resources.inputs.queue-pr.path)/queue
+    workingDir: $(resources.inputs.queue-pr.path)/queue-master
     image: $(params.BUILDER_IMAGE)
     # specifying DOCKER_CONFIG is required to allow kaniko to detect docker credential
     # https://github.com/tektoncd/pipeline/pull/706
@@ -44,7 +44,7 @@ spec:
     securityContext:
       runAsUser: 0
   - name: write-digest
-    workingDir: $(resources.inputs.queue-pr.path)/queue
+    workingDir: $(resources.inputs.queue-pr.path)/queue-master
     image: gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/imagedigestexporter:v0.11.1
     # output of imagedigestexport [{"key":"digest","value":"sha256:eed29..660","resourceRef":{"name":"myrepo/myimage"}}]
     command: ["/ko-app/imagedigestexporter"]
@@ -52,7 +52,7 @@ spec:
     - -images=[{"name":"$(params.IMAGE)","type":"image","url":"$(params.IMAGE)","digest":"","OutputImageDir":"$(workspaces.source.path)/image-digest"}]
     - -terminationMessagePath=image-digested
   - name: digest-to-results
-    workingDir:  $(resources.inputs.queue-pr.path)/queue
+    workingDir:  $(resources.inputs.queue-pr.path)/queue-master
     image: stedolan/jq
     script: |
       cat image-digested | jq -j '.[0].value' | tee /tekton/results/IMAGE-DIGEST
