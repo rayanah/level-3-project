@@ -1,11 +1,11 @@
 apiVersion: tekton.dev/v1alpha1
 kind: PipelineResource
 metadata:
-  name: sock-user
+  name: orders-pr
 spec:
   type: git
   params:
     - name: revision
-      value: test
+      value: main
     - name: url
-      value: https://github.com/ManarAbdulrahman/level-3-project.git
+      value: https://github.com/rayanah/level-3-project.git

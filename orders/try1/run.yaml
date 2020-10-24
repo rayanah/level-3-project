@@ -1,0 +1,16 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: orders-run-images
+spec:
+  serviceAccountName: sock-shop
+  taskRef:
+    name: orders
+  resources:
+    inputs:
+    - name: orders-pr
+      resourceRef:
+        name: orders-pr
+  params:
+    - name: IMAGE
+      value: "rayanah/orders"

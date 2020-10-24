@@ -1,0 +1,12 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineRun
+metadata:
+  name: orders-run
+spec:
+  serviceAccountName: sock-shop
+  pipelineRef:
+    name: orders-pipeline
+  resources:
+    - name: final
+      resourceRef:
+        name: orders-pr

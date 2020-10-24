@@ -1,6 +1,0 @@
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: docker-hub
-secrets:
-  - name: docker-hub-creds

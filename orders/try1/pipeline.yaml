@@ -1,0 +1,24 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: orders-pipeline
+spec:
+  resources:
+    - name: final
+      type: git
+  tasks:
+    - name: build
+      taskRef:
+        name: orders
+      resources:
+        inputs: 
+        - name: orders-pr
+          resource: final
+    - name: orders-deploy-kubectl
+      runAfter: ["build"]
+      taskRef:
+        name: orders-deploy-kubectl
+      resources:
+        inputs:
+        - name: orders-pr
+          resource: final

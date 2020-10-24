@@ -1,0 +1,33 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: orders-deploy-kubectl
+  serviceAccountName: orders-deploy
+spec:
+  params:
+    - name: pathToYamlFile
+      type: string
+      description: The path to the yaml file to deploy within the git source
+      default: $(resources.inputs.orders-pr.path)/orders/orders-dep-ser.yaml
+    - name: pathToDbYamlFile
+      type: string
+      default:  $(resources.inputs.orders-pr.path)/orders/ordersdb-dep-ser.yaml 
+    - name: namespace
+      default: test
+  resources:
+    inputs:
+      - name: orders-pr
+        type: git
+  steps:
+   - name: run-kubectl
+     image: lachlanevenson/k8s-kubectl
+     command: ["kubectl"]
+     args:
+       - "apply"
+       - "-f"
+       - "$(params.pathToDbYamlFile)"
+       - "-f"
+       - "$(params.pathToYamlFile)"
+       - "-n"
+       - "$(params.namespace)"
+
