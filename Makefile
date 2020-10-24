@@ -1,7 +1,7 @@
 
 
 up: 
-	cd k8s-sandbox && make up install-cicd install-ingress   
+	cd k8s-sandbox && make up install-cicd install-ingress && cd .. && make secret-dockerhup  
 
 k8s: front-end-k8s catalogue-k8s cart-k8s orders-k8s payment-k8s shipping-k8s user-k8s 
 
