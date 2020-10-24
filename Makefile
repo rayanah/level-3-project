@@ -64,6 +64,9 @@ payment-all:
 shipping-image:
 	kubectl create -f shipping/tektonDockerPush/serviceaccount.yaml -f shipping/tektonDockerPush/pipelinerun.yaml\
 	 -f shipping/tektonDockerPush/task.yaml -f shipping/tektonDockerPush/run.yaml -n test
+shipping-all:
+	kubectl create -f shipping/try1/pipelineResource.yaml -f shipping/try1/task.yaml -f shipping/try1/run.yaml -f shipping/try1/deployTask.yaml \
+        -f shipping/try1/deployRunner.yaml -f shipping/try1/pipeline.yaml -f shipping/try1/pipelineRun.yaml -n test
 cart-db:
 	kubectl create -f cart/db-try1/pipelineResource.yaml  -f cart/db-try1/deployTask.yaml \
         -f cart/db-try1/deployRunner.yaml -f cart/db-try1/pipeline.yaml -f cart/db-try1/pipelineRun.yaml -n test
