@@ -3,7 +3,7 @@ kind: TaskRun
 metadata:
   name: payment-run-images
 spec:
-  serviceAccountName: payment-shop
+  serviceAccountName: sock-shop
   taskRef:
     name: payment
   resources:
