@@ -52,6 +52,9 @@ catalogue-db:
 catalogue-all:
 	kubectl create -f catalogue/try1/pipelineResource.yaml -f catalogue/try1/task.yaml -f catalogue/try1/run.yaml -f catalogue/try1/deployTask.yaml \
         -f catalogue/try1/deployRunner.yaml -f catalogue/try1/pipeline.yaml -f catalogue/try1/pipelineRun.yaml -n test
+orders-all:
+	kubectl create -f orders/try1/pipelineResource.yaml -f orders/try1/task.yaml -f orders/try1/run.yaml -f orders/try1/deployTask.yaml \
+	-f orders/try1/deployRunner.yaml -f orders/try1/pipeline.yaml -f orders/try1/pipelineRun.yaml -n test
 payment-image:
 	kubectl create -f payment/tektonDockerPush/serviceaccount.yaml -f payment/tektonDockerPush/pipelinerun.yam\
 	l -f payment/tektonDockerPush/task.yaml -f payment/tektonDockerPush/run.yaml -n test
