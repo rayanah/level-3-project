@@ -1,0 +1,9 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: queue-run
+spec:
+  serviceAccountName: sock-shop
+  taskRef:
+    name: queue-deploy-kubectl
+

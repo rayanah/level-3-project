@@ -1,0 +1,24 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: queue-pipeline
+spec:
+  resources:
+    - name: final
+      type: git
+  tasks:
+    - name: build
+      taskRef:
+        name: queue
+      resources:
+        inputs: 
+        - name: queue-pr
+          resource: final
+    - name: queue-deploy-kubectl
+      runAfter: ["build"]
+      taskRef:
+        name: queue-deploy-kubectl
+      resources:
+        inputs:
+        - name: queue-pr
+          resource: final
