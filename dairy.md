@@ -47,3 +47,20 @@ Also I had problem in Carts and it was old file, I didn't make push for the Cart
 Today I repeat payment dockerfile to multi-stage, and I got some of error in dockerfile locally but I manage to fix it. I will check the payment with k8s tomorrow.
 Also I repeate cart, it seems that doesn't working in the browser becuase the cart button was disappering ,I dont know  why is that was happing. But I repeat the cart and cart db yaml file from the biginning and it works fine now. and I finish from user microservices successfully and I check if work fine in the browser and it's working fine.
 And I repeate order and order db  microservices, becuase I check the order microservices in browser it was not working. So  I use k8s log command to check if there something clear what happing. and I read that there is error in db socket. so I review the the yaml file depoyment in both order and order db and fix it,and works fine now, I will check tomorrow in the browser.
+
+## Day 12
+
+Today I repeate order and order-db, I work with it the whole day to figure out what the hill is happing. I get ZERO error in k8s logs and description,I cant know what is wrong with it.I will re-check again :(
+Also I complete payment and shipping deploy with k8s. But i can't know if they work fine until order microservices work.
+
+## Day 13
+
+Today I re-check every service logs, so if orders one may depend on then and that why not work.  I start with front-end logs, and I notice that order "Get/ 500 error". I didn't understand the error if it's cuase the error or not, I kept asking and searching to figure it out, but with no result.
+
+
+## Day 14
+after finish all the microservices except order of course. I push the images and deploy with k8s and every thing seems fine, I start with Tekton. 
+Today I start with 
+
+## Day 15
+
