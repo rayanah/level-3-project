@@ -7,6 +7,6 @@ spec:
   pipelineRef:
     name: shipping-pipeline
   resources:
-    - name: final
+    - name: shipping-pr
       resourceRef:
         name: shipping-pr

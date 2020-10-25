@@ -4,7 +4,7 @@ metadata:
   name: shipping-pipeline
 spec:
   resources:
-    - name: final
+    - name: shipping-pr
       type: git
   tasks:
     - name: build
@@ -13,7 +13,7 @@ spec:
       resources:
         inputs: 
         - name: shipping-pr
-          resource: final
+          resource: shipping-pr
     - name: shipping-deploy-kubectl
       runAfter: ["build"]
       taskRef:
@@ -21,4 +21,4 @@ spec:
       resources:
         inputs:
         - name: shipping-pr
-          resource: final
+          resource: shipping-pr
