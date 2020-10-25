@@ -4,7 +4,7 @@ metadata:
   name: payment-pipeline
 spec:
   resources:
-    - name: final
+    - name: payment-pr
       type: git
   tasks:
     - name: build
@@ -13,7 +13,7 @@ spec:
       resources:
         inputs: 
         - name: payment-pr
-          resource: final
+          resource: payment-pr
     - name: payment-deploy-kubectl
       runAfter: ["build"]
       taskRef:
@@ -21,4 +21,4 @@ spec:
       resources:
         inputs:
         - name: payment-pr
-          resource: final
+          resource: payment-pr

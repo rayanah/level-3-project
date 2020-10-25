@@ -5,5 +5,9 @@ metadata:
 spec:
   serviceAccountName: sock-shop
   taskRef:
-    name: paymant-deploy-kubectl
-
+    name: payment-deploy-kubectl
+  resources:
+    inputs:
+    - name: payment-pr
+      resourceRef:
+        name: payment-pr

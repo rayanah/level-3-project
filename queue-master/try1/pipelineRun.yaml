@@ -7,6 +7,6 @@ spec:
   pipelineRef:
     name: queue-pipeline
   resources:
-    - name: final
+    - name: queue-pr
       resourceRef:
         name: queue-pr

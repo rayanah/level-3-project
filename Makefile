@@ -71,7 +71,7 @@ cart-db:
 	kubectl create -f cart/db-try1/pipelineResource.yaml  -f cart/db-try1/deployTask.yaml \
         -f cart/db-try1/deployRunner.yaml -f cart/db-try1/pipeline.yaml -f cart/db-try1/pipelineRun.yaml -n test
 
-cart-image:
+cart-all:
 	kubectl create -f cart/try1/pipelineResource.yaml -f cart/try1/task.yaml -f cart/try1/run.yaml -f cart/try1/deployTask.yaml \
         -f cart/try1/deployRunner.yaml -f cart/try1/pipeline.yaml -f cart/try1/pipelineRun.yaml -n test
 queue-master-image:

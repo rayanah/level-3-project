@@ -7,6 +7,6 @@ spec:
   pipelineRef:
     name: payment-pipeline
   resources:
-    - name: final
+    - name: payment-pr
       resourceRef:
         name: payment-pr

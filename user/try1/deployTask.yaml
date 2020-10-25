@@ -20,9 +20,8 @@ spec:
      image: lachlanevenson/k8s-kubectl
      command: ["kubectl"]
      args:
-       - "create"
+       - "apply"
        - "-f"
        - "$(params.pathToYamlFile)"
        - "-n"
        - "$(params.namespace)"
-

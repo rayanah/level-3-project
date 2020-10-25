@@ -6,4 +6,8 @@ spec:
   serviceAccountName: sock-shop
   taskRef:
     name: queue-deploy-kubectl
-
+  resources:
+    inputs:
+    - name: queue-pr
+      resourceRef:
+        name: queue-pr
