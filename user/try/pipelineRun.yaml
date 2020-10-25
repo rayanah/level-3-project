@@ -5,8 +5,8 @@ metadata:
 spec:
   serviceAccountName: sock-shop
   pipelineRef:
-    name: user-pipeline
+    name: user-pipeline 
   resources:
-    - name: user-pr
+    - name: user-p-res
       resourceRef:
-        name: user-pr
+        name: user-p-res

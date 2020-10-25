@@ -8,9 +8,9 @@ spec:
     name: user
   resources:
     inputs:
-    - name: user-pr
+    - name: user-p-res
       resourceRef:
-        name: user-pr
+        name: user-p-res
   params:
     - name: IMAGE
       value: "rayanah/user"

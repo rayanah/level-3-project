@@ -8,12 +8,12 @@ spec:
     - name: pathToYamlFile
       type: string
       description: The path to the yaml file to deploy within the git source
-      default: $(resources.inputs.user-pr.path)/user/user-dep-ser.yaml
+      default: $(resources.inputs.user-p-res.path)/user/user-dep-ser.yaml
     - name: namespace
       default: test
   resources:
     inputs:
-      - name: user-pr
+      - name: user-p-res
         type: git
   steps:
    - name: run-kubectl
@@ -25,3 +25,4 @@ spec:
        - "$(params.pathToYamlFile)"
        - "-n"
        - "$(params.namespace)"
+

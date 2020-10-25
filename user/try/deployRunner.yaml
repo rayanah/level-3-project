@@ -8,6 +8,6 @@ spec:
     name: user-deploy-kubectl
   resources:
     inputs:
-    - name: user-pr
+    - name: user-p-res
       resourceRef:
-        name: user-pr
+        name: user-p-res
