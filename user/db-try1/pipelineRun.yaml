@@ -7,6 +7,6 @@ spec:
   pipelineRef:
     name: user-db-pipeline
   resources:
-    - name: final
+    - name: user-db-pr
       resourceRef:
         name: user-db-pr

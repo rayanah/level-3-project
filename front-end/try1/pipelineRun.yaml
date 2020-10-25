@@ -7,6 +7,6 @@ spec:
   pipelineRef:
     name: front-end-pipeline 
   resources:
-    - name: final
+    - name: front-end-pr
       resourceRef:
         name: front-end-pr

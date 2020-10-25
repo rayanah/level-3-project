@@ -4,7 +4,7 @@ metadata:
   name: user-db-pipeline
 spec:
   resources:
-    - name: final
+    - name: user-db-pr
       type: git
   tasks:
     - name: build
@@ -13,7 +13,7 @@ spec:
       resources:
         inputs: 
         - name: user-db-pr
-          resource: final
+          resource: user-db-pr
     - name: user-db-deploy-kubectl
       runAfter: ["build"]
       taskRef:
@@ -21,4 +21,4 @@ spec:
       resources:
         inputs:
         - name: user-db-pr
-          resource: final
+          resource: user-db-pr
