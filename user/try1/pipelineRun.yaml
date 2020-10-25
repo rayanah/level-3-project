@@ -7,6 +7,6 @@ spec:
   pipelineRef:
     name: user-pipeline
   resources:
-    - name: final
+    - name: user-pr
       resourceRef:
         name: user-pr
