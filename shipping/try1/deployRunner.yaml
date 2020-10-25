@@ -8,6 +8,6 @@ spec:
     name: shipping-deploy-kubectl
   resources:
     inputs:
-    - name: user-db-pr
+    - name: shipping-pr
       resourceRef:
-        name: user-db-pr
+        name: shipping-pr
