@@ -4,7 +4,7 @@ metadata:
   name: orders-pipeline
 spec:
   resources:
-    - name: final
+    - name: orders-pr
       type: git
   tasks:
     - name: build
@@ -13,7 +13,7 @@ spec:
       resources:
         inputs: 
         - name: orders-pr
-          resource: final
+          resource: orders-pr
     - name: orders-deploy-kubectl
       runAfter: ["build"]
       taskRef:
@@ -21,4 +21,4 @@ spec:
       resources:
         inputs:
         - name: orders-pr
-          resource: final
+          resource: orders-pr

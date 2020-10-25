@@ -7,6 +7,6 @@ spec:
   pipelineRef:
     name: orders-pipeline
   resources:
-    - name: final
+    - name:  orders-pr
       resourceRef:
         name: orders-pr
