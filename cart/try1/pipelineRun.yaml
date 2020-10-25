@@ -7,6 +7,6 @@ spec:
   pipelineRef:
     name: carts-pipeline
   resources:
-    - name: final
+    - name: carts-pr
       resourceRef:
         name: carts-pr
