@@ -4,7 +4,7 @@ metadata:
   name: catalogue-pipeline
 spec:
   resources:
-    - name: final
+    - name: catalogue-pr
       type: git
   tasks:
     - name: build
@@ -13,7 +13,7 @@ spec:
       resources:
         inputs: 
         - name: catalogue-pr
-          resource: final
+          resource: catalogue-pr
     - name: catalogue-deploy-kubectl
       runAfter: ["build"]
       taskRef:
@@ -21,4 +21,4 @@ spec:
       resources:
         inputs:
         - name: catalogue-pr
-          resource: final
+          resource: catalogue-pr

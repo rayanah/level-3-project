@@ -7,6 +7,6 @@ spec:
   pipelineRef:
     name: catalogue-db-pipeline
   resources:
-    - name: final
+    - name: catalogue-db-pr
       resourceRef:
         name: catalogue-db-pr
