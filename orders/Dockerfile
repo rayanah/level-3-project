@@ -2,8 +2,6 @@ FROM maven:3-jdk-8-slim AS base
 RUN mkdir -p /orders
 COPY . /orders
 WORKDIR  /orders
-RUN apt-get install curl
-RUN curl google.com 
 RUN mvn clean package
 
 
@@ -13,6 +11,6 @@ COPY --from=base /orders/target/*.jar ./app.jar
 
 RUN	chown -R ${SERVICE_USER}:${SERVICE_GROUP} ./app.jar
 
-USER ${SERVICE_USER}
+#USER ${SERVICE_USER}
 
 ENTRYPOINT ["/usr/local/bin/java.sh","-jar","./app.jar", "--port=80"]
