@@ -9,8 +9,8 @@
     casper.start("http://15.185.106.230/", function() {
       this.clickLabel("Login");
       this.fill("#login-modal form", {
-        "username": "Eve_Berger",
-        "password": "duis"
+        "username": "rayanah",
+        "password": "1234"
       }, true);
       this.click("#login-modal form button.btn.btn-primary");
       this.waitForText("Logged in", function() {
