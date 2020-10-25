@@ -1,13 +1,12 @@
-apiVersion: tekton.dev/v1beta1
-kind: TaskRun
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineRun
 metadata:
   name: user-run
 spec:
   serviceAccountName: sock-shop
-  taskRef:
-    name: user-deploy-kubectl
+  pipelineRef:
+    name: user-pipeline
   resources:
-    inputs:
-    - name: user-pr
+    - name: final
       resourceRef:
         name: user-pr

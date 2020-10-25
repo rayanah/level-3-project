@@ -6,8 +6,3 @@ spec:
   serviceAccountName: sock-shop
   taskRef:
     name: user-deploy-kubectl
-  resources:
-    inputs:
-    - name: user-pr
-      resourceRef:
-        name: user-pr
