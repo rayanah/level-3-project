@@ -6,4 +6,8 @@ spec:
   serviceAccountName: sock-shop
   taskRef:
     name: catalogue-deploy-kubectl
-
+  resources:
+    inputs:
+    - name: catalogue-pr
+      resourceRef:
+        name: catalogue-pr
