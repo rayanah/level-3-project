@@ -1,12 +1,12 @@
-apiVersion: apps/v1
+--- 
+apiVersion: apps/v1 
 kind: Deployment
 metadata:
   name: carts-db
   labels:
     app: carts-db
-  namespace: test
 spec:
-  replicas: 1
+  replicas: 1 
   selector:
     matchLabels:
       app: carts-db
@@ -46,12 +46,10 @@ metadata:
   name: carts-db
   labels:
     app: carts-db
-  namespace: test
 spec:
   ports:
-    # the port that this service should serve on
   - port: 27017
     targetPort: 27017
   selector:
     app: carts-db
-
+---

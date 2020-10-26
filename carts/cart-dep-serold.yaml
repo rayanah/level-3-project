@@ -1,13 +1,12 @@
----
-apiVersion: apps/v1
+--- 
+apiVersion: apps/v1 
 kind: Deployment
 metadata:
   name: carts
   labels:
     app: carts
-  namespace: test
 spec:
-  replicas: 1
+  replicas: 1 
   selector:
     matchLabels:
       app: carts
@@ -18,7 +17,7 @@ spec:
     spec:
       containers:
       - name: carts
-        image: rayanah/sock-cart
+        image: rayanah/carts
         env:
          - name: ZIPKIN
            value: zipkin.jaeger.svc.cluster.local
@@ -55,10 +54,10 @@ metadata:
   name: carts
   labels:
     app: carts
-  namespace: test
 spec:
   ports:
   - port: 80
     targetPort: 80
   selector:
     app: carts
+---
