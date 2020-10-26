@@ -6,11 +6,11 @@
 
   casper.test.begin("User buys some socks", 5, function(test) {
     // initial load and login
-    casper.start("http://15.185.106.230/", function() {
+    casper.start("http://157.175.40.34:80/", function() {
       this.clickLabel("Login");
       this.fill("#login-modal form", {
-        "username": "rayanah",
-        "password": "1234"
+        "username": "Eve_Berger",
+        "password": "eve"
       }, true);
       this.click("#login-modal form button.btn.btn-primary");
       this.waitForText("Logged in", function() {
@@ -65,7 +65,7 @@
 
     // actually checkout
     casper.then(function() {
-      this.waitForText("My orders", function() {
+      this.waitForText("order", function() {
         test.pass("user is taken to the orders page");
       }, function() {
         console.log("dumping page screenshot as PNG")

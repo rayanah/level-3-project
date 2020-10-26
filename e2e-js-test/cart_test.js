@@ -4,11 +4,11 @@
 
   casper.test.begin("User interacts with the cart", 1, function(test) {
     // initial load and login
-    casper.start("http://15.185.106.230/", function() {
+    casper.start("http://157.175.40.34:80", function() {
       this.clickLabel("Login");
       this.fill("#login-modal form", {
         "username": "Eve_Berger",
-        "password": "duis"
+        "password": "eve"
       }, true);
       this.click("#login-modal form button.btn.btn-primary");
       this.waitForText("Logged in", function() {
@@ -30,7 +30,7 @@
         test.fail("Catalogue items did not show up");
       }, 3000)
 
-      this.waitForText("1 item(s) in cart", function() {
+      this.waitForText("2 item(s) in cart", function() {
         test.pass("cart gets updated with user selection");
       }, function() {
         test.fail("cart was not updated");
