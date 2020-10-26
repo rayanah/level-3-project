@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: queue-master
+  labels:
+    app: queue-master
+  namespace: test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: queue-master
+  template:
+    metadata:
+      labels:
+        app: queue-master
+    spec:
+      containers:
+      - name: queue-master
+        image: rayanah/queue-master
+        ports:
+        - containerPort: 80
+      nodeSelector:
+        beta.kubernetes.io/os: linux
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: queue-master
+  labels:
+    app: queue-master
+  annotations:
+    prometheus.io/path: "/prometheus"
+  namespace: test
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: queue-master

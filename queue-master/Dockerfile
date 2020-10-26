@@ -1,25 +1,10 @@
-# syntax=docker/dockerfile:experimental
-FROM maven:3-jdk-8 as build
-
+FROM  maven:3-jdk-8-slim AS bimage
+RUN mkdir -p /queue
+COPY . /queue
 WORKDIR /queue
-
-copy src /queue/src
-copy pom.xml /queue/
-
-#RUN --mount=type=cache,id=maven,target=/root/.m2,sharing=shared mvn clean package
 RUN mvn clean package
-RUN ls && pwd && ls target
 
-
-FROM adoptopenjdk/openjdk11:alpine
-
-#ENV	SERVICE_USER=myuser \
-#	SERVICE_UID=10001 
-#	SERVICE_GROUP=mygroup \
-#	SERVICE_GID=10001
-
-COPY --from=build /queue/target/*.jar ./queue-master.jar
-
-
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/urandom","-jar","./queue-master.jar", "--port=80"]
+FROM java:openjdk-8-alpine
+COPY --from=bimage /queue/target/*.jar ./app.jar
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/urandom","-jar","./app.jar", "--port=80"]
 
