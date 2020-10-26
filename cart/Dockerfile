@@ -1,10 +1,10 @@
 FROM maven:3-jdk-8 AS bimage
-WORKDIR /carts
-COPY . /carts
+WORKDIR /cart
+COPY . /cart
 RUN mvn clean package
 
 FROM weaveworksdemos/msd-java:jre-latest
-COPY --from=bimage /carts/target/*.jar ./app.jar
+COPY --from=bimage /cart/target/*.jar ./app.jar
 RUN     chown -R ${SERVICE_USER}:${SERVICE_GROUP} ./app.jar
 
 USER ${SERVICE_USER}
