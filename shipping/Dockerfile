@@ -1,17 +1,18 @@
 # syntax=docker/dockerfile:experimental
 FROM maven:3-jdk-11 as build
-WORKDIR /tmp
-copy src /tmp/src
-copy pom.xml /tmp/
 
-#run --mount=type=cache,id=maven,target=/root/.m2,sharing=shared mvn clean package && pwd target && ls target
+RUN mkdir -p /shipping
+COPY . /shipping
+WORKDIR  /shipping
+
 run mvn clean package 
-run chmod a+rx /tmp/target/shipping.jar
+
+
 from adoptopenjdk/openjdk11:alpine
-#WORKDIR /usr/src/app
-COPY --from=build /tmp/target/shipping.jar /shipping.jar
+COPY --from=build /tmp/target/shipping.jar /app.jar
 
 #RUN	chmod a+rx ./shipping.jar
+RUN	chown -R ${SERVICE_USER}:${SERVICE_GROUP} ./app.jar
 
 USER ${SERVICE_USER}
 
@@ -29,5 +30,4 @@ LABEL org.label-schema.vendor="rayanah" \
   org.label-schema.vcs-ref="${COMMIT}" \
   org.label-schema.schema-version="1.0"
 
-ENTRYPOINT ["/opt/java/openjdk/bin/java","-jar","./shipping.jar", "--port=8080"]
-
+ENTRYPOINT ["/opt/java/openjdk/bin/java","-jar","./shipping.jar", "--port=80"]
