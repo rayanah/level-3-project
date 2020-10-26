@@ -1,12 +1,12 @@
---- 
-apiVersion: apps/v1 
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: user-db
   labels:
     app: user-db
+  namespace: test
 spec:
-  replicas: 1 
+  replicas: 1
   selector:
     matchLabels:
       app: user-db
@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: user-db
-        image: rayanah/user-db
+        image: rayanah/user-db 
         ports:
         - name: mongo
           containerPort: 27017
@@ -46,10 +46,10 @@ metadata:
   name: user-db
   labels:
     app: user-db
+  namespace: test
 spec:
   ports:
   - port: 27017
     targetPort: 27017
   selector:
     app: user-db
----
