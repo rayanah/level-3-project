@@ -1,13 +1,13 @@
----
+--- 
 apiVersion: apps/v1 
 kind: Deployment
 metadata:
   name: catalogue-db
+  namespace: test
   labels:
     app: catalogue-db
-  namespace: test
 spec:
-  replicas: 1
+  replicas: 1 
   selector:
     matchLabels:
       app: catalogue-db
@@ -21,12 +21,18 @@ spec:
         image: rayanah/catalogue-db
         env:
           - name: MYSQL_ROOT_PASSWORD
-            value: fake_password 
+            value: fake_password
           - name: MYSQL_DATABASE
             value: socksdb
+        resources:
+          limits:
+            cpu: 300m
+            memory: 1000Mi
+          requests:
+            cpu: 100m
+            memory: 300Mi
         ports:
-        - name: mysql
-          containerPort: 3306
+        - containerPort: 80
       nodeSelector:
         beta.kubernetes.io/os: linux
 ---
@@ -35,12 +41,12 @@ kind: Service
 metadata:
   name: catalogue-db
   labels:
-    name: catalogue-db
-  namespace: test
+    app: catalogue-db
 spec:
   ports:
-    # the port that this service should serve on
   - port: 3306
     targetPort: 3306
   selector:
     app: catalogue-db
+---
+

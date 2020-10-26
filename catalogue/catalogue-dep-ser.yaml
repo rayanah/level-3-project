@@ -1,12 +1,13 @@
---- 
-apiVersion: apps/v1 
+---
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: catalogue
   labels:
-    app: catalogue
+    name: catalogue
+  namespace: test
 spec:
-  replicas: 1 
+  replicas: 1
   selector:
     matchLabels:
       app: catalogue
@@ -17,32 +18,12 @@ spec:
     spec:
       containers:
       - name: catalogue
-        image: rayanah/catalogue
-        resources:
-          limits:
-            cpu: 100m
-            memory: 100Mi
-          requests:
-            cpu: 100m
-            memory: 100Mi
+        image: rayanah/catalogue 
         ports:
         - containerPort: 80
         securityContext:
-          allowPrivilegeEscalation: false
           runAsUser: 0
           readOnlyRootFilesystem: true
-        livenessProbe:
-          httpGet:
-            path: /health
-            port: 80
-          initialDelaySeconds: 300
-          periodSeconds: 3
-        readinessProbe:
-          httpGet:
-            path: /health
-            port: 80
-          initialDelaySeconds: 180
-          periodSeconds: 3
       nodeSelector:
         beta.kubernetes.io/os: linux
 ---
@@ -52,10 +33,10 @@ metadata:
   name: catalogue
   labels:
     app: catalogue
+  namespace: test
 spec:
   ports:
   - port: 80
     targetPort: 80
   selector:
     app: catalogue
----
