@@ -16,7 +16,6 @@ COPY --from=build /tmp/target/shipping.jar /shipping.jar
 
 run chmod a+rx ./shipping.jar
 
-USER ${SERVICE_USER}
 
 ARG BUILD_DATE
 ARG BUILD_VERSION

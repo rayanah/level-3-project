@@ -20,7 +20,6 @@ FROM adoptopenjdk/openjdk11:alpine
 
 COPY --from=build /queue/target/*.jar ./queue-master.jar
 
-USER ${SERVICE_USER}
 
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/urandom","-jar","./queue-master.jar", "--port=80"]
 
