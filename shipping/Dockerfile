@@ -1,4 +1,4 @@
-# syntax=docker/dockerfile:experimental
+
 FROM maven:3-jdk-11 as build
 
 WORKDIR /tmp
@@ -10,10 +10,11 @@ run mvn clean package
 
 
 from adoptopenjdk/openjdk11:alpine
-COPY --from=build tmp/target/*.jar /app.jar
 
-#RUN	chmod a+rx ./shipping.jar
-RUN	chown -R ${SERVICE_USER}:${SERVICE_GROUP} ./app.jar
+
+COPY --from=build /tmp/target/shipping.jar /shipping.jar
+
+run chmod a+rx ./shipping.jar
 
 USER ${SERVICE_USER}
 
