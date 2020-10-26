@@ -1,0 +1,13 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: carts-run
+spec:
+  serviceAccountName: sock-shop
+  taskRef:
+    name: carts-deploy-kubectl
+  resources:
+    inputs:
+    - name: carts-pr
+      resourceRef:
+        name: carts-pr
