@@ -1,40 +1,40 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: queue-master
+  name: payment
   labels:
-    app: queue-master
+    app: payment
   namespace: test
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: queue-master
+      app: payment 
   template:
     metadata:
       labels:
-        app: queue-master
+        app: payment
     spec:
       containers:
-      - name: queue-master
-        image: rayanah/queue-master
+      - name: payment
+        image: rayanah/payment
         ports:
         - containerPort: 80
+        securityContext:
+          runAsUser: 0
       nodeSelector:
         beta.kubernetes.io/os: linux
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: queue-master
+  name: payment
   labels:
-    app: queue-master
-  annotations:
-    prometheus.io/path: "/prometheus"
-  namespace: test
+    app: payment
+  namespace: test 
 spec:
   ports:
   - port: 80
     targetPort: 80
   selector:
-    app: queue-master
+    app: payment

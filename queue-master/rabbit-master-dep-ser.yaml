@@ -1,12 +1,12 @@
---- 
-apiVersion: apps/v1 
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: rabbitmq
   labels:
     app: rabbitmq
+  namespace: test
 spec:
-  replicas: 1 
+  replicas: 1
   selector:
     matchLabels:
       app: rabbitmq
@@ -15,7 +15,7 @@ spec:
       labels:
         app: rabbitmq
       annotations:
-        prometheus.io/scrape: "false" 
+        prometheus.io/scrape: "true"
     spec:
       containers:
       - name: rabbitmq
@@ -49,8 +49,10 @@ metadata:
   name: rabbitmq
   labels:
     app: rabbitmq
+  namespace: test 
 spec:
   ports:
+    # the port that this service should serve on
   - port: 5672
     name: rabbitmq
     targetPort: 5672
@@ -60,4 +62,3 @@ spec:
     protocol: TCP
   selector:
     app: rabbitmq
-
