@@ -1,4 +1,4 @@
-FROM golang:1.7
+FROM golang:1.7 as bimage
 
 COPY . /go/src/github.com/microservices-demo/payment
 WORKDIR /go/src/github.com/microservices-demo/payment
@@ -20,7 +20,7 @@ RUN	addgroup -g ${SERVICE_GID} ${SERVICE_GROUP} && \
 	apk add --update libcap
 
 WORKDIR /
-COPY --from=0 /app /app
+COPY --from=bimage /app /app
 
 RUN	chmod +x /app && \
 	chown -R ${SERVICE_USER}:${SERVICE_GROUP} /app && \
