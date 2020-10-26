@@ -1,11 +1,7 @@
-FROM maven:3-jdk-8-slim AS bimage
-RUN mkdir -p /shipping
-COPY . /shipping
-WORKDIR  /shipping
-RUN mvn clean package
-
 FROM weaveworksdemos/msd-java:jre-latest
-COPY --from=bimage /shipping/target/*.jar  /app.jar
+
+WORKDIR /usr/src/app
+COPY *.jar ./app.jar
 
 RUN	chown -R ${SERVICE_USER}:${SERVICE_GROUP} ./app.jar
 
@@ -15,7 +11,7 @@ ARG BUILD_DATE
 ARG BUILD_VERSION
 ARG COMMIT
 
-LABEL org.label-schema.vendor="rayanah" \
+LABEL org.label-schema.vendor="Weaveworks" \
   org.label-schema.build-date="${BUILD_DATE}" \
   org.label-schema.version="${BUILD_VERSION}" \
   org.label-schema.name="Socks Shop: Shipping" \
