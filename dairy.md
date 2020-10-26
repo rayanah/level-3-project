@@ -59,8 +59,9 @@ Today I re-check every service logs, so if orders one may depend on then and tha
 
 
 ## Day 14
-after finish all the microservices except order of course. I push the images and deploy with k8s and every thing seems fine, I start with Tekton. 
-Today I start with 
+after finish all the microservices except order of course. I push the images and deploy with k8s and every thing seems fine, I start with Tekton. After I am sure that every services could push there images to dockerHup and they successfully deployed to k8s, I can put them in tekton pipelines to be automated.
+I have successfully done them all and again except orders.
 
 ## Day 15
+Today I announce that orders microservices wooooork finaly :"( thank god. I spent 4 days every time i repeate it with no use. but when I repeate every thing literally. oh god so so happy. next i will work with e2e-tests, and after they pass switch them to prod namespace.
 
