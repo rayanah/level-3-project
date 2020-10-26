@@ -1,0 +1,13 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: catalogue-end-run
+spec:
+  serviceAccountName: sock-shop
+  taskRef:
+    name: catalogue-deploy-kubectl
+  resources:
+    inputs:
+    - name: catalogue-pr
+      resourceRef:
+        name: catalogue-pr

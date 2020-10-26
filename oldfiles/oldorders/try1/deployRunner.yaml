@@ -1,0 +1,13 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: orders-run
+spec:
+  serviceAccountName: sock-shop
+  taskRef:
+    name: orders-deploy-kubectl
+  resources:
+    inputs:
+    - name: orders-pr
+      resourceRef:
+        name: orders-pr

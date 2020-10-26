@@ -1,0 +1,13 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: payment-run
+spec:
+  serviceAccountName: sock-shop
+  taskRef:
+    name: payment-deploy-kubectl
+  resources:
+    inputs:
+    - name: payment-pr
+      resourceRef:
+        name: payment-pr

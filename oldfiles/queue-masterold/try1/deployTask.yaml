@@ -1,0 +1,34 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: queue-deploy-kubectl
+  serviceAccountName: sock-shop
+spec:
+  params:
+    - name: pathToYamlFile
+      type: string
+      description: The path to the yaml file to deploy within the git source
+      default: $(resources.inputs.queue-pr.path)/queue-master/queue-master-dep-ser.yaml
+    - name: pathToDbYamlFile
+      type: string
+      description: The path to the yaml file to deploy within the git source
+      default: $(resources.inputs.queue-pr.path)/queue-master/rabbit-master-dep-ser.yaml
+    - name: namespace
+      default: test
+  resources:
+    inputs:
+      - name: queue-pr
+        type: git
+  steps:
+   - name: run-kubectl
+     image: lachlanevenson/k8s-kubectl
+     command: ["kubectl"]
+     args:
+       - "apply"
+       - "-f"
+       - "$(params.pathToDbYamlFile)"
+       - "-f"
+       - "$(params.pathToYamlFile)"
+       - "-n"
+       - "$(params.namespace)"
+

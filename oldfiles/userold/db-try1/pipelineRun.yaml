@@ -1,0 +1,12 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineRun
+metadata:
+  name: user-db-run
+spec:
+  serviceAccountName: sock-shop
+  pipelineRef:
+    name: user-db-pipeline
+  resources:
+    - name: user-db-pr
+      resourceRef:
+        name: user-db-pr

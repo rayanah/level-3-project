@@ -9,7 +9,6 @@ RUN gvt restore && \
 
 FROM alpine:3.4
 
-
 ENV	SERVICE_USER=myuser \
 	SERVICE_UID=10001 \
 	SERVICE_GROUP=mygroup \
@@ -27,7 +26,7 @@ RUN	chmod +x /app && \
 	chown -R ${SERVICE_USER}:${SERVICE_GROUP} /app /images && \
 	setcap 'cap_net_bind_service=+ep' /app
 
-#USER ${SERVICE_USER}
+USER ${SERVICE_USER}
 
 ARG BUILD_DATE
 ARG BUILD_VERSION

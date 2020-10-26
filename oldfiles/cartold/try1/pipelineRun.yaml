@@ -1,0 +1,12 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineRun
+metadata:
+  name: carts-run
+spec:
+  serviceAccountName: sock-shop
+  pipelineRef:
+    name: carts-pipeline
+  resources:
+    - name: carts-pr
+      resourceRef:
+        name: carts-pr

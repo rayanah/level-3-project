@@ -1,0 +1,24 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: payment-pipeline
+spec:
+  resources:
+    - name: payment-pr
+      type: git
+  tasks:
+    - name: build
+      taskRef:
+        name: payment
+      resources:
+        inputs: 
+        - name: payment-pr
+          resource: payment-pr
+    - name: payment-deploy-kubectl
+      runAfter: ["build"]
+      taskRef:
+        name: payment-deploy-kubectl
+      resources:
+        inputs:
+        - name: payment-pr
+          resource: payment-pr

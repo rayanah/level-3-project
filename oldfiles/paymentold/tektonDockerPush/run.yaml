@@ -1,0 +1,16 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: payment
+spec:
+  serviceAccountName: payment-docker-hub
+  taskRef:
+    name: payment
+  params:
+  - name: IMAGE
+    value: "rayanah/payment"
+  resources:
+    inputs:
+    - name: level-3-project
+      resourceRef:
+        name: payment

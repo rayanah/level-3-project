@@ -1,0 +1,16 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: catalogue-db-run-images
+spec:
+  serviceAccountName: sock-shop
+  taskRef:
+    name: catalogue-db
+  resources:
+    inputs:
+    - name: catalogue-db-pr
+      resourceRef:
+        name: catalogue-db-pr
+  params:
+    - name: IMAGE
+      value: "rayanah/catalogue-db"

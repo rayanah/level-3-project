@@ -1,0 +1,24 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: user-pipeline
+spec:
+  resources:
+    - name: user-p-res
+      type: git
+  tasks:
+    - name: build
+      taskRef:
+        name: user
+      resources:
+        inputs: 
+        - name: user-p-res
+          resource: user-p-res
+    - name: user-deploy-kubectl
+      runAfter: ["build"]
+      taskRef:
+        name: user-deploy-kubectl
+      resources:
+        inputs:
+        - name: user-p-res
+          resource: user-p-res
