@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: queue-master
-        image: rayanah/queue-master
+        image: manarabdulrahman/sock-queue-master
         ports:
         - containerPort: 80
 ---

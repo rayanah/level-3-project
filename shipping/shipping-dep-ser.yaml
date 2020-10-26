@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: shipping
-        image: rayanah/shipping
+        image: manarabdulrahman/sock-shipping
         env:
          - name: ZIPKIN
            value: zipkin.jaeger.svc.cluster.local
