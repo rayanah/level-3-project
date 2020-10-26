@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: carts
-        image: rayanah/sock-cart
+        image: rayanah/cart
         env:
          - name: ZIPKIN
            value: zipkin.jaeger.svc.cluster.local
