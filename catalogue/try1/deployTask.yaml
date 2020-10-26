@@ -9,6 +9,10 @@ spec:
       type: string
       description: The path to the yaml file to deploy within the git source
       default: $(resources.inputs.catalogue-pr.path)/catalogue/catalogue-dep-ser.yaml
+    - name: pathToDbYamlFile
+      type: string
+      description: The path to the yaml file to deploy within the git source
+      default: $(resources.inputs.catalogue-pr.path)/catalogue/cataloguedb-dep-ser.yaml
     - name: namespace
       default: test
   resources:
@@ -21,6 +25,8 @@ spec:
      command: ["kubectl"]
      args:
        - "apply"
+       - "-f"
+       - "$(params.pathToDbYamlFile)"
        - "-f"
        - "$(params.pathToYamlFile)"
        - "-n"
