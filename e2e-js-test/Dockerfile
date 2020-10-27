@@ -21,4 +21,5 @@ WORKDIR /e2e-test-js
 
 COPY . /e2e-test-js
 RUN ls
+RUN cat makefile
 RUN npm install
