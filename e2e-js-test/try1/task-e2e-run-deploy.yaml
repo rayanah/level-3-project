@@ -34,7 +34,4 @@ spec:
     script: |
       #!/bin/sh
        ls e2e-pr/e2e-js-test
-       pwd -P runner.sh
-       pwd e2e-pr/e2e-js-test/login_test.js
-       source e2e-pr/e2e-js-test/runner.sh
-
+       source workspace/e2e-pr/e2e-js-test/runner.sh
