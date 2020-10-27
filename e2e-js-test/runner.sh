@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-pwd
+pwd 
+ls
 code=0
 testfile=$1
 files=$testfile
