@@ -20,10 +20,18 @@ spec:
   - name: namespace
     default: test
   steps:
+  - name: run-kubectl
+    image: lachlanevenson/k8s-kubectl
+    command: ["kubectl"]
+    args:
+      - "apply"
+      - "-f"
+      - "$(params.pathToYamlFile)"
+      - "-n"
+      - "$(params.namespace)"
   - name: run-test
     image: rayanah/e2e-tests
     script: |
       #!/bin/sh
-       pwd
-       ls
-       source runner.sh
+       ls e2e-pr
+       source e2e-pr/runner.sh
