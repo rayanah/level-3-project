@@ -4,7 +4,6 @@ metadata:
   name: rabbitmq
   labels:
     app: rabbitmq
-  namespace: test
 spec:
   replicas: 1
   selector:
@@ -48,8 +47,7 @@ kind: Service
 metadata:
   name: rabbitmq
   labels:
-    app: rabbitmq
-  namespace: test 
+    app: rabbitmq 
 spec:
   ports:
     # the port that this service should serve on
