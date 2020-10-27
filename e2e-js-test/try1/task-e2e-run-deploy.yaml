@@ -33,5 +33,5 @@ spec:
     image: rayanah/e2e-tests
     script: |
       #!/bin/sh
-       ls e2e-pr
+       ls e2e-pr/e2e-js-test
        source e2e-pr/e2e-js-test/runner.sh
