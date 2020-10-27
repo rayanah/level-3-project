@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
-
+pwd
 code=0
 testfile=$1
 files=$testfile
 
 if [ -z $testfile ]
 then
-  files=$(ls ~/e2e-pr/e2e-js-test/*_test.js)
+  files=$(ls workspace/e2e-pr/e2e-js-test/*_test.js)
 fi
 
 for test in $files
