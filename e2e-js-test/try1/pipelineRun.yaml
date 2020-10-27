@@ -1,0 +1,12 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineRun
+metadata:
+  name: e2e-run
+spec:
+  serviceAccountName: sock-shop
+  pipelineRef:
+    name: e2e-pipeline 
+  resources:
+    - name: e2e-pr
+      resourceRef:
+        name: e2e-pr

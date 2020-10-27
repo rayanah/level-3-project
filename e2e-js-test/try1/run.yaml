@@ -1,0 +1,16 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: e2e-images
+spec:
+  serviceAccountName: sock-shop
+  taskRef:
+    name: e2e
+  resources:
+    inputs:
+    - name: e2e-pr
+      resourceRef:
+        name: e2e-pr
+  params:
+    - name: IMAGE
+      value: "rayanah/e2e-test"

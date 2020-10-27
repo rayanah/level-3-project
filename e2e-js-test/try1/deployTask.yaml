@@ -1,0 +1,28 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: e2e-deploy-kubectl
+  serviceAccountName: sock-shop
+spec:
+  params:
+    - name: pathToYamlFile
+      type: string
+      description: The path to the yaml file to deploy within the git source
+      default: $(resources.inputs.e2e-pr.path)/e2e-js-test/e2e-dep-ser.yaml
+    - name: namespace
+      default: test
+  resources:
+    inputs:
+      - name: e2e-pr
+        type: git
+  steps:
+   - name: run-kubectl
+     image: lachlanevenson/k8s-kubectl
+     command: ["kubectl"]
+     args:
+       - "apply"
+       - "-f"
+       - "$(params.pathToYamlFile)"
+       - "-n"
+       - "$(params.namespace)"
+

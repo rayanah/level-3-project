@@ -1,0 +1,24 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: e2e-pipeline
+spec:
+  resources:
+    - name: e2e-pr
+      type: git
+  tasks:
+    - name: build
+      taskRef:
+        name: e2e
+      resources:
+        inputs: 
+        - name: e2e-pr
+          resource: e2e-pr
+    - name: e2e-deploy-kubectl
+      runAfter: ["build"]
+      taskRef:
+        name: e2e-deploy-kubectl
+      resources:
+        inputs:
+        - name: e2e-pr
+          resource: e2e-pr
