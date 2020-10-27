@@ -1,0 +1,23 @@
+--- 
+apiVersion: apps/v1 
+kind: Deployment
+metadata:
+  name: e2e
+  namespace: test
+  labels:
+    app: e2e
+spec:
+  replicas: 1 
+  selector:
+    matchLabels:
+      app: e2e
+  template:
+    metadata:
+      labels:
+        app: e2e
+    spec:
+      containers:
+      - name: front-end
+        image: rayanah/e2e-test
+      nodeSelector:
+        beta.kubernetes.io/os: linux
