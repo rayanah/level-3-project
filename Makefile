@@ -27,19 +27,17 @@ tekton: front-end-tkn user-db-tkn catalogue-db-tkn cart-db-tkn user-tkn catalogu
 
 front-end-tkn:
 	kubectl create -f sa.yaml -f role-binding.yaml -f front-end/try1/pipelineResource.yaml -f front-end/try1/task.yaml \
-        -f front-end/try1/run.yaml -f front-end/try1/deployTask.yaml -f front-end/try1/deployRunner.yaml -f front-end/try1/pipeline.yaml \
-        -f front-end/try1/pipelineRun.yaml -n test
+         -f front-end/try1/deployTask.yaml -f -f front-end/try1/pipeline.yaml -f front-end/try1/pipelineRun.yaml -n test
 
 user-db-tkn:
-	kubectl create -f user/db-try1/pipelineResource.yaml -f user/db-try1/task.yaml -f user/db-try1/run.yaml -f user/db-try1/deployTask.yaml \
-        -f user/db-try1/deployRunner.yaml -f user/db-try1/pipeline.yaml -f user/db-try1/pipelineRun.yaml -n test
+	kubectl create -f user/db-try1/pipelineResource.yaml -f user/db-try1/task.yaml -f user/db-try1/deployTask.yaml \
+        -f user/db-try1/pipeline.yaml -f user/db-try1/pipelineRun.yaml -n test
 user-tkn:
-	kubectl create -f user/try1/pipelineResource.yaml -f user/try1/task.yaml -f user/try1/run.yaml -f user/try1/deployTask.yaml\
-         -f user/try1/deployRunner.yaml -f user/try1/pipeline.yaml -f user/try1/pipelineRun.yaml -n test
+	kubectl create -f user/try1/pipelineResource.yaml -f user/try1/task.yaml -f user/try1/deployTask.yaml\
+         -f user/try1/pipeline.yaml -f user/try1/pipelineRun.yaml -n test
 catalogue-db-tkn:
-	kubectl create -f catalogue/db-try1/pipelineResource.yaml -f catalogue/db-try1/task.yaml -f catalogue/db-try1/run.yaml\
-        -f catalogue/db-try1/deployTask.yaml -f catalogue/db-try1/deployRunner.yaml -f catalogue/db-try1/pipeline.yaml \
-        -f catalogue/db-try1/pipelineRun.yaml -n test
+	kubectl create -f catalogue/db-try1/pipelineResource.yaml -f catalogue/db-try1/task.yaml -f catalogue/db-try1/deployTask.yaml 	
+	-f catalogue/db-try1/pipeline.yaml -f catalogue/db-try1/pipelineRun.yaml -n test
 catalogue-tkn:
 	kubectl create -f catalogue/try1/pipelineResource.yaml -f catalogue/try1/task.yaml -f catalogue/try1/run.yaml -f catalogue/try1/deployTask.yaml \
 	-f catalogue/try1/deployRunner.yaml -f catalogue/try1/pipeline.yaml -f catalogue/try1/pipelineRun.yaml -n test
