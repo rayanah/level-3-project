@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 pwd 
-ls
+ls && cd e2e-pr && ls
 code=0
 testfile=$1
 files=$testfile
 
 if [ -z $testfile ]
 then
-  files=$(ls *_test.js)
+  files=$(ls e2e-pr/e2e-js-test/*_test.js)
 fi
 
 for test in $files
