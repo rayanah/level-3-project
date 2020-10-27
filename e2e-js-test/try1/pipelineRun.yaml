@@ -10,3 +10,6 @@ spec:
     - name: e2e-pr
       resourceRef:
         name: e2e-pr
+  params:
+    - name: IMAGE
+      value: "rayanah/e2e-tests"

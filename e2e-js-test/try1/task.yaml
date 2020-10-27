@@ -10,10 +10,10 @@ spec:
   params:
   - name: IMAGE
     description: Name (reference) of the image to build.
-    default: "rayanah/e2e-test"
+    default: "rayanah/e2e-tests"
   - name: DOCKERFILE
     description: Path to the Dockerfile to build.
-    default: $(resources.inputs.e2e-pr.path)/e2e-js-tesr/Dockerfile
+    default: $(resources.inputs.e2e-pr.path)/e2e-js-test/Dockerfile
   - name: CONTEXT
     description: The build context used by Kaniko.
     default: $(resources.inputs.e2e-pr.path)/e2e-js-test

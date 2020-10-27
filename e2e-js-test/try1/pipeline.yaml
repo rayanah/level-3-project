@@ -14,10 +14,10 @@ spec:
         inputs: 
         - name: e2e-pr
           resource: e2e-pr
-    - name: e2e-deploy-kubectl
+    - name: e2e-test
       runAfter: ["build"]
       taskRef:
-        name: e2e-deploy-kubectl
+        name: e2e-test
       resources:
         inputs:
         - name: e2e-pr
