@@ -13,30 +13,17 @@ spec:
     default: "rayanah/e2e-tests"
   - name: IMAGE_TAG
     default: "latest"
-  - name: CONTEXT
-    description: The build context used by Kaniko.
-    default: $(resources.inputs.e2e-pr.path)/e2e-js-test
   - name: pathToYamlFile
     type: string
-    description: The path to the yaml file to deploy within the git source
+    description: The path to the yaml file to deploy
     default: $(resources.inputs.e2e-pr.path)/e2e-js-test/e2e-dep.yaml
   - name: namespace
     default: test
   steps:
   - name: run-test
-    image: "$(params.IMAGE):$(params.IMAGE_TAG)"
-    command: ["/bin/sh"]
-    args:
-      - "-c"
-      - "make itest"
-    securityContext:
-     runAsUser: 0
-  - name: run-kubectl
-    image: lachlanevenson/k8s-kubectl
-    command: ["kubectl"]
-    args:
-      - "apply"
-      - "-f"
-      - "$(params.pathToYamlFile)"
-      - "-n"
-      - "$(params.namespace)"
+    image: rayanah/e2e-tests
+    script: |
+      #!/bin/sh
+       pwd
+       ls
+       source runner.sh
