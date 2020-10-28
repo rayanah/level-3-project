@@ -1,14 +1,19 @@
 (function (){
   'use strict';
-  require("./config.js");
+  require("./config");
 
   var __utils__ = require("clientutils").create();
 
-  casper.test.begin("User buys some socks", 5, function(test) {
+ 
+  casper.test.begin("User buys some socks", 7, function(test) {
     // initial load and login
     casper.start("http://front-end/", function() {
-      this.clickLabel("Login");
-      this.fill("#login-modal form", {
+     test.assertNotVisible("#login-modal", "user does not see the login dialogue");
+     
+     this.clickLabel("Login");
+     casper.waitUntilVisible("#login-modal", function() {
+       test.assertVisible("#login-modal", "user is presented with the login dialogue");
+       this.fill("#login-modal form", {
         "username": "Eve_Berger",
         "password": "eve"
       }, true);
@@ -18,7 +23,7 @@
       }, function() {
         test.fail("login failed");
       }, 3000);
-    });
+});   });
 
     // TODO: Test that "Proceed to checkout" button is disabled when the cart is empty
 
@@ -65,7 +70,7 @@
 
     // actually checkout
     casper.then(function() {
-      this.waitForText("order", function() {
+      this.waitForText("My orders", function() {
         test.pass("user is taken to the orders page");
       }, function() {
         console.log("dumping page screenshot as PNG")
