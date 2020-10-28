@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 pwd 
-ls && cd e2e-pr && cd e2e-js-test
+#ls && cd e2e-pr && cd e2e-js-test
 code=0
 testfile=$1
 files=$testfile
