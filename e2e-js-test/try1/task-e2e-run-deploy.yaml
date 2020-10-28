@@ -18,5 +18,6 @@ spec:
       #!/bin/sh
        pwd
        ls e2e-pr
+       rm -rf node_modules package-lock.json
        npm install mongodb
        source  e2e-pr/e2e-js-test/runner.sh
