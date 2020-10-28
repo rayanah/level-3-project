@@ -19,15 +19,15 @@
   "scripts": {
     "test": "mocha"
   },
-  "author": "",
+  "author": "rayanah",
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/KnowledgeHut-AWS/level3-project.git"
+    "url": "git+https://github.com/rayanah/level-3-project.git"
   },
   "bugs": {
-    "url": "https://github.com/KnowledgeHut-AWS/level3-project/issues"
+    "url": "https://github.com/rayanah/level-3-project/issues"
   },
-  "homepage": "https://github.com/KnowledgeHut-AWS/level3-project#readme",
+  "homepage": "https://github.com/rayanah/level-3-project#readme",
   "description": ""
 }
