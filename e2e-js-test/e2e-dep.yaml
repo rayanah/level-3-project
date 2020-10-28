@@ -18,6 +18,6 @@ spec:
     spec:
       containers:
       - name: front-end
-        image: rayanah/e2e-test
+        image: rayanah/e2e-tests
       nodeSelector:
         beta.kubernetes.io/os: linux
