@@ -21,3 +21,5 @@ serviceaccount/ingress-nginx-admission created
 Logging: install-elasticsearch
 Logging: install-fluent-bit
 Logging: install-kibana
+Monitoring: install-grafana
+Monitoring: install-grafana
