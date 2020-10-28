@@ -10,7 +10,6 @@
     "chrome-remote-interface": "^0.28.2",
     "express": "^4.17.1",
     "http": "^0.0.1-security",
-    "mongodb": "^2.2.33",
     "request": "^2.88.2",
     "sinon": "^9.2.0"
   },
