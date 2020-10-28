@@ -1,6 +1,6 @@
 (function (){
   'use strict';
-  require("./config.js");
+  require("./config");
 
   casper.test.begin("User interacts with the cart", 1, function(test) {
     // initial load and login
