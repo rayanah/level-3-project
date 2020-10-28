@@ -17,7 +17,9 @@ spec:
         app: e2e
     spec:
       containers:
-      - name: front-end
+      - name: e2e-test
         image: rayanah/e2e-tests
+        command: ["/bin/sh"]
+        args: ["-c","ls"]
       nodeSelector:
         beta.kubernetes.io/os: linux
