@@ -19,6 +19,4 @@ RUN curl -Ls https://github.com/dustinblackman/phantomized/releases/download/2.1
 
 WORKDIR /e2e-test-js 
 COPY . /e2e-test-js
-RUN ls
-RUN  rm -rf node_modules package-lock.json
 RUN npm install
