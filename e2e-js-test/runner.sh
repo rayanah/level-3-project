@@ -7,7 +7,7 @@ files=$testfile
 
 if [ -z $testfile ]
 then
-  files=$(ls login_test.js)
+  files=$(ls *_test.js)
 fi
 
 for test in $files
