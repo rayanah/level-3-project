@@ -11,6 +11,7 @@ spec:
   - name: IMAGE
     description: Name (reference) of the image to build.
     default: "rayanah/e2e-tests"
+  steps:
   - name: run-test
     image: rayanah/e2e-tests
     script: |
