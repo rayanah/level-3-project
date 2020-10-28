@@ -11,13 +11,13 @@
   var count = 0;
 
   ["cart", "item"].forEach(function(col) {
-    client.connect(url, function(err, db) {
+    MongoClient.connect(url, function(err, db) {
       if (err) return handleErr(err);
       db.
         collection(col).
         remove({}, { w: 1 }, function(err, res) {
         if (err) return handleErr(err);
-        db.close();
+        client.close();
       });
     });
   });
