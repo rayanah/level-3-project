@@ -18,3 +18,6 @@ job.batch/ingress-nginx-admission-patch created
 role.rbac.authorization.k8s.io/ingress-nginx-admission created
 rolebinding.rbac.authorization.k8s.io/ingress-nginx-admission created
 serviceaccount/ingress-nginx-admission created
+Logging: install-elasticsearch
+Logging: install-fluent-bit
+Logging: install-kibana

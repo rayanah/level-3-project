@@ -1,24 +1,29 @@
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1 
 kind: Deployment
 metadata:
   name: kibana
+  namespace: kube-system
   labels:
     name: kibana
-  namespace: kube-system
 spec:
-  replicas: 1
+  replicas: 1 
+  selector:
+    matchLabels:
+      name: kibana
   template:
     metadata:
       labels:
         name: kibana
     spec:
       containers:
-       - image: kibana
-         name: kibana
-         ports:
-          - name: kibana
-            containerPort: 5601
+      - name: kibana
+        image: kibana
+        ports:
+         - name: kibana
+           containerPort: 5601
+      nodeSelector:
+        beta.kubernetes.io/os: linux
 ---
 apiVersion: v1
 kind: Service
