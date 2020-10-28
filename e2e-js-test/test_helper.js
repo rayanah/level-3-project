@@ -11,7 +11,7 @@
   var count = 0;
 
   ["cart", "item"].forEach(function(col) {
-    MongoClient.connect(url, function(err, db) {
+      client.connect(url, function(err, db) {
       if (err) return handleErr(err);
       db.
         collection(col).
