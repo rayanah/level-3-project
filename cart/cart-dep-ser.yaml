@@ -18,27 +18,29 @@ spec:
       containers:
       - name: carts
         image: rayanah/carts
+        ports:
+        - containerPort: 80
         env:
          - name: JAVA_OPTS
            value: -Xms64m -Xmx128m -XX:PermSize=32m -XX:MaxPermSize=64m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom
-        securityContext:
-          runAsUser: 0
-          readOnlyRootFilesystem: true
+#        securityContext:
+#          runAsUser: 0
+#          readOnlyRootFilesystem: true
         volumeMounts:
         - mountPath: /tmp
           name: tmp-volume
-        livenessProbe:
-          httpGet:
-            path: /health
-            port: 80
-          initialDelaySeconds: 300
-          periodSeconds: 3
-        readinessProbe:
-          httpGet:
-            path: /health
-            port: 80
-          initialDelaySeconds: 180
-          periodSeconds: 3
+#        livenessProbe:
+#          httpGet:
+#            path: /health
+#            port: 80
+#          initialDelaySeconds: 300
+#          periodSeconds: 3
+#        readinessProbe:
+#          httpGet:
+#            path: /health
+#            port: 80
+#          initialDelaySeconds: 180
+#          periodSeconds: 3
       volumes:
         - name: tmp-volume
           emptyDir:
