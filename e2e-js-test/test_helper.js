@@ -3,7 +3,7 @@
 
   var client = require("mongodb").MongoClient;
   var url = "mongodb://carts-db:27017/data}";
-
+  const collection = db.collection('carts-db');
   var handleErr = function(err) {
     console.log("something went wrong: %s", err.message);
   };
