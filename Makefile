@@ -1,17 +1,45 @@
 
-up: 
-	cd k8s-sandbox && make up install-cicd install-ingress && cd .. && make secret-dockerhup tekton 
+
+up: cluster namespace platform secret-dockerhup e2e-test-image tekton log-monitor
+
+cluster: 
+	cd k8s-sandbox && make up
+down:
+	cd k8s-sandbox && make down
+
+namespace:
+	kubectl apply -f namespaces.yaml
+platform:
+	 cd k8s-sandbox install-cicd install-ingress
+
+log-monitor: pro elfs
+
 
 pro: 
 	#helm repo add stable https://kubernetes-charts.storage.googleapis.com
-	helm repo update
-	kubectl create namespace monitor
-	helm install prometheus-operator stable/prometheus-operator --namespace monitor --set grafana.service.type=LoadBalancer
-	kubectl apply -f pro-grag/ingress.yaml -n monitor
-	kubectl get svc -n monitor | grep prometheus-operator-grafana
+	helm repo update 
+	#kubectl create namespace monitor 
+	helm install prometheus-operator stable/prometheus-operator --namespace monitor --set grafana.service.type=LoadBalancer 
+	kubectl apply -f pro-grag/ingress.yaml -n monitor 
+	kubectl get svc -n monitor | grep prometheus-operator-grafana 
 
-elfs: source elf/elf.sh
- 
+elfs: 
+	#kubectl create namespace elf 
+	#kubectl apply -f elf/elf.namespace.yaml 
+	#helm repo add elastic https://helm.elastic.co 
+	#helm repo add fluent https://fluent.github.io/helm-charts 
+	helm repo update 
+	helm install elasticsearch elastic/elasticsearch --version=7.9.0 --namespace=elf 
+	helm install fluent-bit fluent/fluent-bit --namespace=elf 
+	helm install kibana elastic/kibana --version=7.9.0 --namespace=elf --set service.type=LoadBalancer 
+	kubectl run random-logger --image=chentex/random-logger -n elf 
+	kubectl apply -f elf/ingress.yaml -n elf 
+	#to access elf port 
+	kubectl get svc -n elf | grep kibana-kiban
+
+
+
+
 k8s: front-end-k8s catalogue-k8s cart-k8s orders-k8s payment-k8s shipping-k8s user-k8s 
 
 front-end-k8s:
@@ -36,11 +64,12 @@ tekton: front-end-tkn user-db-tkn catalogue-db-tkn  user-tkn catalogue-tkn cart-
 
 front-end-tkn:
 	kubectl create -f sa.yaml -f role-binding.yaml -f front-end/try1/pipelineResource.yaml -f front-end/try1/task.yaml \
-         -f front-end/try1/deployTask.yaml -f front-end/try1/pipeline.yaml -f front-end/try1/pipelineRun.yaml -n test
+	-f front-end/try1/deployTask.yaml -f front-end/try1/pipeline.yaml -f front-end/try1/pipelineRun.yaml -f front-end/try1/task-e2e-test.yaml -f \
+	-f task-deploy-prod -n test
 
 user-db-tkn:
 	kubectl create -f user/db-try1/pipelineResource.yaml -f user/db-try1/task.yaml -f user/db-try1/deployTask.yaml \
-        -f user/db-try1/pipeline.yaml -f user/db-try1/pipelineRun.yaml -n test
+        -f user/db-try1/pipeline.yaml -f user/db-try1/pipelineRun.yaml -f task-deploy-prod n test
 user-tkn:
 	kubectl create -f user/try1/pipelineResource.yaml -f user/try1/task.yaml -f user/try1/deployTask.yaml\
          -f user/try1/pipeline.yaml -f user/try1/pipelineRun.yaml -n test
@@ -68,7 +97,8 @@ queue-master-tkn:
         -f queue-master/try1/deployTask.yaml   -f queue-master/try1/pipeline.yaml -f queue-master/try1/pipelineRun.yaml -n test
 
 e2e-test-image:
-##but the image her and make it the first to run
+	kubectl create -f e2e-js-test/try1/pipelineResource.yaml -f e2e-js-test/try1/task.yaml -f e2e-js-test/try1/pipeline.yaml \
+	-f e2e-js-test/try1/pipelineRun.yaml -n test 
 
 push-images: secret-dockerhup e2e-tests-image front-end-image user-image catalogue-image payment-image shipping-image carts-image queue-master-image orders-image load-test-image
 
@@ -77,7 +107,7 @@ secret-dockerhup:
 	kubectl create secret generic rayanah-secret \
 	 --from-file=.dockerconfigjson=/home/ubuntu/.docker/config.json \
  	--type=kubernetes.io/dockerconfigjson -n test
-e2e-tests-image:
+e2e-image:
 	kubectl create -f e2e-tests/tektonDockerPush/serviceaccount.yaml -f e2e-tests/tektonDockerPush/pipelinerun.yaml\
         -f e2e-tests/tektonDockerPush/task.yaml -f e2e-tests/tektonDockerPush/run.yaml -n test
 
