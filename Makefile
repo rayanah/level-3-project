@@ -31,7 +31,7 @@ shipping-k8s:
 queue-master-k8s:
 	cd queue-master && kubectl create -f queue-master-dep-ser.yaml -f rabbit-master-dep-ser.yaml -n test
 
-
+##but image e2e test
 tekton: front-end-tkn user-db-tkn catalogue-db-tkn  user-tkn catalogue-tkn cart-tkn orders-tkn payment-tkn shipping-tkn queue-master-tkn
 
 front-end-tkn:
@@ -48,31 +48,27 @@ catalogue-db-tkn:
 	kubectl create -f catalogue/db-try1/pipelineResource.yaml -f catalogue/db-try1/task.yaml -f catalogue/db-try1/deployTask.yaml 	
 	-f catalogue/db-try1/pipeline.yaml -f catalogue/db-try1/pipelineRun.yaml -n test
 catalogue-tkn:
-	kubectl create -f catalogue/try1/pipelineResource.yaml -f catalogue/try1/task.yaml -f catalogue/try1/run.yaml -f catalogue/try1/deployTask.yaml \
-	-f catalogue/try1/deployRunner.yaml -f catalogue/try1/pipeline.yaml -f catalogue/try1/pipelineRun.yaml -n test
-cart-db-tkn:
-	kubectl create -f cart/db-try1/pipelineResource.yaml  -f cart/db-try1/deployTask.yaml \
-        -f cart/db-try1/deployRunner.yaml -f cart/db-try1/pipeline.yaml -f cart/db-try1/pipelineRun.yaml -n test
+	kubectl create -f catalogue/try1/pipelineResource.yaml -f catalogue/try1/task.yaml -f catalogue/try1/deployTask.yaml \
+	 -f catalogue/try1/pipeline.yaml -f catalogue/try1/pipelineRun.yaml -n test
 cart-tkn:
-	kubectl create -f cart/try1/pipelineResource.yaml -f cart/try1/task.yaml -f cart/try1/run.yaml -f cart/try1/deployTask.yaml \
-        -f cart/try1/deployRunner.yaml -f cart/try1/pipeline.yaml -f cart/try1/pipelineRun.yaml -n test
+	kubectl create -f cart/try1/pipelineResource.yaml -f cart/try1/task.yaml -f cart/try1/deployTask.yaml \
+         -f cart/try1/pipeline.yaml -f cart/try1/pipelineRun.yaml -n test
 orders-tkn:
-	kubectl create -f orders/try1/pipelineResource.yaml -f orders/try1/task.yaml -f orders/try1/run.yaml -f orders/try1/deployTask.yaml \
-        -f orders/try1/deployRunner.yaml -f orders/try1/pipeline.yaml -f orders/try1/pipelineRun.yaml -n test
+	kubectl create -f orders/try1/pipelineResource.yaml -f orders/try1/task.yaml -f orders/try1/deployTask.yaml \
+         -f orders/try1/pipeline.yaml -f orders/try1/pipelineRun.yaml -n test
 
 payment-tkn:
-	kubectl create -f payment/try1/pipelineResource.yaml -f payment/try1/task.yaml -f payment/try1/run.yaml -f payment/try1/deployTask.yaml \
-        -f payment/try1/deployRunner.yaml -f payment/try1/pipeline.yaml -f payment/try1/pipelineRun.yaml -n test
+	kubectl create -f payment/try1/pipelineResource.yaml -f payment/try1/task.yaml -f payment/try1/deployTask.yaml \
+        -f payment/try1/pipeline.yaml -f payment/try1/pipelineRun.yaml -n test
 shipping-tkn:
-	kubectl create -f shipping/try1/pipelineResource.yaml -f shipping/try1/task.yaml -f shipping/try1/run.yaml -f shipping/try1/deployTask.yaml \
-        -f shipping/try1/deployRunner.yaml -f shipping/try1/pipeline.yaml -f shipping/try1/pipelineRun.yaml -n test
+	kubectl create -f shipping/try1/pipelineResource.yaml -f shipping/try1/task.yaml -f shipping/try1/deployTask.yaml \
+        -f shipping/try1/pipeline.yaml -f shipping/try1/pipelineRun.yaml -n test
 queue-master-tkn:
-	kubectl create -f queue-master/try1/pipelineResource.yaml -f queue-master/try1/task.yaml -f queue-master/try1/run.yaml \
-        -f queue-master/try1/deployTask.yaml  -f queue-master/try1/deployRunner.yaml -f queue-master/try1/pipeline.yaml \
-        -f queue-master/try1/pipelineRun.yaml -n test
+	kubectl create -f queue-master/try1/pipelineResource.yaml -f queue-master/try1/task.yaml \
+        -f queue-master/try1/deployTask.yaml   -f queue-master/try1/pipeline.yaml -f queue-master/try1/pipelineRun.yaml -n test
 
-e2e-test-tkn:
-
+e2e-test-image:
+##but the image her and make it the first to run
 
 push-images: secret-dockerhup e2e-tests-image front-end-image user-image catalogue-image payment-image shipping-image carts-image queue-master-image orders-image load-test-image
 
