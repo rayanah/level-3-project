@@ -81,10 +81,11 @@ catalogue-db-tkn:
 	-f catalogue/db-try1/pipeline.yaml -f catalogue/db-try1/pipelineRun.yaml -n test
 catalogue-tkn:
 	kubectl create -f catalogue/try1/pipelineResource.yaml -f catalogue/try1/task.yaml -f catalogue/try1/deployTask.yaml \
-	 -f catalogue/try1/pipeline.yaml -f catalogue/try1/pipelineRun.yaml -n test
+	-f catalogue/try1/task-e2e-test.yaml -f catalogue/try1/task-deploy-prod.yaml -f catalogue/try1/pipeline.yaml \
+	-f catalogue/try1/pipelineRun.yaml -n test
 cart-tkn:
-	kubectl create -f cart/try1/pipelineResource.yaml -f cart/try1/task.yaml -f cart/try1/deployTask.yaml \
-         -f cart/try1/pipeline.yaml -f cart/try1/pipelineRun.yaml -n test
+	kubectl create -f cart/try1/pipelineResource.yaml -f cart/try1/task.yaml -f cart/try1/deployTask.yaml -f cart/try1/task-e2e-test.yaml \
+	 -f cart/try1/task-deploy-prod.yaml -f cart/try1/pipeline.yaml -f cart/try1/pipelineRun.yaml -n test
 orders-tkn:
 	kubectl create -f orders/try1/pipelineResource.yaml -f orders/try1/task.yaml -f orders/try1/deployTask.yaml \
          -f orders/try1/pipeline.yaml -f orders/try1/pipelineRun.yaml -n test
