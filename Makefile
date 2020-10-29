@@ -1,8 +1,26 @@
 
 up: 
-	cd k8s-sandbox && make up install-cicd install-ingress && cd .. && make secret-dockerhup  
+	cd k8s-sandbox && make up install-cicd install-ingress && cd .. && make secret-dockerhup tekton 
 
+pro: 
+	helm repo add stable https://kubernetes-charts.storage.googleapis.com
+	helm repo update
+	kubectl create namespace monitor
+	helm install prometheus-operator stable/prometheus-operator --namespace monitor --set grafana.service.type=LoadBalancer
+	kubectl apply -f ingress.yaml -n monitor
+	kubectl get svc -n monitor | grep prometheus-operator-grafana
 
+elf:
+	kubectl apply -f elf.namespace.yaml
+	helm repo add elastic https://helm.elastic.co
+	helm repo add fluent https://fluent.github.io/helm-charts
+	helm repo update
+	helm install elasticsearch elastic/elasticsearch --version=7.9.0 --namespace=elf
+	helm install fluent-bit fluent/fluent-bit --namespace=elf
+	helm install kibana elastic/kibana --version=7.9.0 --namespace=elf --set service.type=LoadBalancer
+	kubectl run random-logger --image=chentex/random-logger -n elf
+	kubectl apply -f ingress.yaml -n elf
+ 
 k8s: front-end-k8s catalogue-k8s cart-k8s orders-k8s payment-k8s shipping-k8s user-k8s 
 
 front-end-k8s:
@@ -23,11 +41,11 @@ queue-master-k8s:
 	cd queue-master && kubectl create -f queue-master-dep-ser.yaml -f rabbit-master-dep-ser.yaml -n test
 
 
-tekton: front-end-tkn user-db-tkn catalogue-db-tkn cart-db-tkn user-tkn catalogue-tkn cart-tkn orders-tkn payment-tkn shipping-tkn queue-master-tkn
+tekton: front-end-tkn user-db-tkn catalogue-db-tkn  user-tkn catalogue-tkn cart-tkn orders-tkn payment-tkn shipping-tkn queue-master-tkn
 
 front-end-tkn:
 	kubectl create -f sa.yaml -f role-binding.yaml -f front-end/try1/pipelineResource.yaml -f front-end/try1/task.yaml \
-         -f front-end/try1/deployTask.yaml -f -f front-end/try1/pipeline.yaml -f front-end/try1/pipelineRun.yaml -n test
+         -f front-end/try1/deployTask.yaml -f front-end/try1/pipeline.yaml -f front-end/try1/pipelineRun.yaml -n test
 
 user-db-tkn:
 	kubectl create -f user/db-try1/pipelineResource.yaml -f user/db-try1/task.yaml -f user/db-try1/deployTask.yaml \
