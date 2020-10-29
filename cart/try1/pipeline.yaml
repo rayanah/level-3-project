@@ -22,3 +22,19 @@ spec:
         inputs:
         - name: carts-pr
           resource: carts-pr
+    - name: cart-e2e-test
+      runAfter: ["cart-deploy-kubectl"]
+      taskRef:
+        name: cart-e2e-test
+      resources:
+        inputs:
+        - name: carts-pr
+          resource: carts-pr
+    - name: cart-deploy-to-prod
+      runAfter: ["cart-e2e-test"]
+      taskRef:
+        name: cart-deploy-to-prod
+      resources:
+        inputs:
+        - name: carts-pr
+          resource: carts-pr
