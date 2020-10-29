@@ -32,9 +32,8 @@ spec:
           resource: front-end-pr
     - name: front-end-deploy-to-prod
       runAfter: ["test"]
-      runOn: ["success"]
       taskRef:
-        name: front-end-deploy-to-prod
+        name: deploy-to-prod
       resources:
         inputs:
         - name: front-end-pr
