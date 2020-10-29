@@ -22,3 +22,20 @@ spec:
         inputs:
         - name: user-p-res
           resource: user-p-res
+    - name: user-e2e-test
+      runAfter: ["user-deploy-kubectl"]
+      taskRef:
+        name: user-e2e-test
+      resources:
+        inputs:
+        - name: user-p-res
+          resource: user-p-res
+    - name: user-deploy-to-prod
+      runAfter: ["user-e2e-test"]
+      taskRef:
+        name: user-deploy-to-prod
+      resources:
+        inputs:
+        - name: user-p-res
+          resource: user-p-res
+
