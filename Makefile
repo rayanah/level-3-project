@@ -89,6 +89,7 @@ cart-tkn:
 	 -f cart/try1/task-deploy-prod.yaml -f cart/try1/pipeline.yaml -f cart/try1/pipelineRun.yaml -n test
 orders-tkn:
 	kubectl create -f orders/try1/pipelineResource.yaml -f orders/try1/task.yaml -f orders/try1/deployTask.yaml \
+	-f orders/try1/task-e2e-test.yaml -f orders/try1/task-deploy-prod.yaml \
          -f orders/try1/pipeline.yaml -f orders/try1/pipelineRun.yaml -n test
 
 payment-tkn:
@@ -96,7 +97,8 @@ payment-tkn:
         -f payment/try1/pipeline.yaml -f payment/try1/pipelineRun.yaml -n test
 shipping-tkn:
 	kubectl create -f shipping/try1/pipelineResource.yaml -f shipping/try1/task.yaml -f shipping/try1/deployTask.yaml \
-        -f shipping/try1/pipeline.yaml -f shipping/try1/pipelineRun.yaml -n test
+        -f shipping/try1/task-e2e-test.yaml -f shipping/try1/task-deploy-prod.yaml \
+	-f shipping/try1/pipeline.yaml -f shipping/try1/pipelineRun.yaml -n test
 queue-master-tkn:
 	kubectl create -f queue-master/try1/pipelineResource.yaml -f queue-master/try1/task.yaml \
         -f queue-master/try1/deployTask.yaml   -f queue-master/try1/pipeline.yaml -f queue-master/try1/pipelineRun.yaml -n test
