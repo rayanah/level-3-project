@@ -22,3 +22,19 @@ spec:
         inputs:
         - name: user-db-pr
           resource: user-db-pr
+    - name: user-db-e2e-test
+      runAfter: ["user-db-deploy-kubectl"]
+      taskRef:
+        name: user-db-e2e-test
+      resources:
+        inputs:
+        - name: user-db-pr
+          resource: user-db-pr
+    - name: deploy-to-prod
+      runAfter: ["user-db-e2e-test"]
+      taskRef:
+        name: deploy-to-prod
+      resources:
+        inputs:
+        - name: user-db-pr
+          resource: user-db-pr
