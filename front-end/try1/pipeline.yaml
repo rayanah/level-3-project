@@ -31,7 +31,7 @@ spec:
         - name: front-end-pr
           resource: front-end-pr
     - name: front-end-deploy-to-prod
-      runAfter: ["test"]
+      runAfter: ["front-end-e2e-test"]
       taskRef:
         name: deploy-to-prod
       resources:
