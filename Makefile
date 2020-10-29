@@ -64,8 +64,8 @@ tekton: front-end-tkn user-db-tkn catalogue-db-tkn  user-tkn catalogue-tkn cart-
 
 front-end-tkn:
 	kubectl create -f sa.yaml -f role-binding.yaml -f front-end/try1/pipelineResource.yaml -f front-end/try1/task.yaml \
-	-f front-end/try1/deployTask.yaml -f task-deploy-prod.yaml -f front-end/try1/pipeline.yaml -f front-end/try1/pipelineRun.yaml \
-	-f front-end/try1/task-e2e-test.yaml -n test
+	-f front-end/try1/deployTask.yaml -f task-deploy-prod.yaml -f front-end/try1/task-e2e-test.yaml-f front-end/try1/pipeline.yaml \
+        -f front-end/try1/pipelineRun.yaml -n test
 
 user-db-tkn:
 	kubectl create -f user/db-try1/pipelineResource.yaml -f user/db-try1/task.yaml -f user/db-try1/deployTask.yaml -f task-deploy-prod  \
