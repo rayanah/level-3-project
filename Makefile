@@ -77,7 +77,8 @@ user-tkn:
 	kubectl create -f user/try1/pipelineResource.yaml -f user/try1/task.yaml -f user/try1/deployTask.yaml -f user/try1/task-e2e-test.yaml \
          -f user/try1/task-deploy-prod.yaml -f user/try1/pipeline.yaml -f user/try1/pipelineRun.yaml -n test
 catalogue-db-tkn:
-	kubectl create -f catalogue/db-try1/pipelineResource.yaml -f catalogue/db-try1/task.yaml -f catalogue/db-try1/deployTask.yaml 	
+	kubectl create -f catalogue/db-try1/pipelineResource.yaml -f catalogue/db-try1/task.yaml -f catalogue/db-try1/deployTask.yaml \
+	 -f catalogue/db-try1/task-e2e-test.yaml -f catalogue/db-try1/task-deploy-prod.yaml \
 	-f catalogue/db-try1/pipeline.yaml -f catalogue/db-try1/pipelineRun.yaml -n test
 catalogue-tkn:
 	kubectl create -f catalogue/try1/pipelineResource.yaml -f catalogue/try1/task.yaml -f catalogue/try1/deployTask.yaml \

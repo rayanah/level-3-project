@@ -1,0 +1,25 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: catalogue-db-e2e-test
+spec:
+  resources:
+    inputs:
+    - name: catalogue-db-pr
+      type: git
+  params:
+  - name: IMAGE
+    description: Name (reference) of the image to build.
+    default: "rayanah/e2e-tests"
+  steps:
+  - name: run-test
+    image: rayanah/e2e-tests
+    script: |
+      #!/bin/sh
+       pwd
+       ls e2e-pr
+       rm -rf node_modules package-lock.json
+       npm init -y
+       npm install --save chrome-remote-interface chrome-launcher mocha express request body-parser sinon chai chai-http http
+       cat  e2e-pr/e2e-js-test/cart_test.js
+       source  e2e-pr/e2e-js-test/runner.sh

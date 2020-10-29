@@ -23,7 +23,7 @@ spec:
         - name: carts-pr
           resource: carts-pr
     - name: cart-e2e-test
-      runAfter: ["cart-deploy-kubectl"]
+      runAfter: ["carts-deploy-kubectl"]
       taskRef:
         name: cart-e2e-test
       resources:
