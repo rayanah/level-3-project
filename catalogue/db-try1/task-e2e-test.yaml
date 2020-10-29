@@ -17,8 +17,8 @@ spec:
     script: |
       #!/bin/sh
        pwd
+       cd catalogue-db-pr/e2e-js-test
        rm -rf node_modules package-lock.json
        npm init -y
        npm install --save chrome-remote-interface chrome-launcher mocha express request body-parser sinon chai chai-http http
-       cat  catalogue-db-pr/e2e-js-test/cart_test.js
-       source  catalogue-db-pr/e2e-js-test/runner.sh
+       source  runner.sh

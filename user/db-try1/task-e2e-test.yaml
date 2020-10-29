@@ -17,8 +17,8 @@ spec:
     script: |
       #!/bin/sh
        pwd
-       ls user-db-pr
+       cd user-db-pr/e2e-js-test
        rm -rf node_modules package-lock.json
        npm init -y
        npm install --save chrome-remote-interface chrome-launcher mocha express request body-parser sinon chai chai-http http
-       source  user-db-pr/e2e-js-test/runner.sh
+       source  runner.sh

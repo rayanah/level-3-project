@@ -19,7 +19,7 @@ spec:
     - name: pathToYamlFile3
       type: string
       description: The path to the yaml file to deploy within the git source
-      default: $(resources.inputs.user-p-res.path)/catalogue/catalogue-end-dep.yaml
+      default: $(resources.inputs.user-p-res.path)/catalogue/catalogue-dep-ser.yaml
     - name: pathToYamlFile4
       type: string
       description: The path to the yaml file to deploy within the git source
