@@ -1,6 +1,6 @@
 cicd: install
 Ingress: install
-namespace/ingress-nginx configured
+namespace/ingress-nginx created
 serviceaccount/ingress-nginx created
 configmap/ingress-nginx-controller created
 clusterrole.rbac.authorization.k8s.io/ingress-nginx created
@@ -18,18 +18,3 @@ job.batch/ingress-nginx-admission-patch created
 role.rbac.authorization.k8s.io/ingress-nginx-admission created
 rolebinding.rbac.authorization.k8s.io/ingress-nginx-admission created
 serviceaccount/ingress-nginx-admission created
-Logging: install-elasticsearch
-Logging: install-fluent-bit
-Logging: install-kibana
-Monitoring: install-grafana
-Monitoring: install-grafana
-Monitoring: delete-grafana
-Monitoring: delete-prometheus
-Monitoring: delete-prometheus
-Monitoring: delete-grafana
-Logging: delete-elasticsearch
-Logging: delete-elasticsearch
-Logging: delete-elasticsearch
-Logging: delete-elasticsearch
-Logging: delete-elasticsearch
-Logging: delete-elasticsearch
