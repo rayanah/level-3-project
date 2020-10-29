@@ -1,6 +1,6 @@
 cicd: install
 Ingress: install
-namespace/ingress-nginx created
+namespace/ingress-nginx configured
 serviceaccount/ingress-nginx created
 configmap/ingress-nginx-controller created
 clusterrole.rbac.authorization.k8s.io/ingress-nginx created
