@@ -22,3 +22,20 @@ spec:
         inputs:
         - name: front-end-pr
           resource: front-end-pr
+    - name: front-end-e2e-test
+      runAfter: ["front-end-deploy-kubectl"]
+      taskRef:
+        name: front-end-e2e-test
+      resources:
+        inputs:
+        - name: front-end-pr
+          resource: front-end-pr
+    - name: front-end-deploy-to-prod
+      runAfter: ["test"]
+      runOn: ["success"]
+      taskRef:
+        name: front-end-deploy-to-prod
+      resources:
+        inputs:
+        - name: front-end-pr
+          resource: front-end-pr
