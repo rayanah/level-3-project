@@ -22,3 +22,19 @@ spec:
         inputs:
         - name: orders-pr
           resource: orders-pr
+    - name: orders-e2e-test
+      runAfter: ["orders-deploy-kubectl"]
+      taskRef:
+        name: orders-e2e-test
+      resources:
+        inputs:
+        - name: orders-pr
+          resource: orders-pr
+    - name: orders-deploy-to-prod
+      runAfter: ["orders-e2e-test"]
+      taskRef:
+        name: orders-deploy-to-prod
+      resources:
+        inputs:
+        - name: orders-pr
+          resource: orders-pr
