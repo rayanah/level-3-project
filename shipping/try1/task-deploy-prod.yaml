@@ -1,0 +1,83 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: shipping-deploy-to-prod
+spec:
+  resources:
+    inputs:
+    - name: shipping-pr
+      type: git
+  params:
+    - name: pathToYamlFile1
+      type: string
+      description: The path to the yaml file to deploy within the git source
+      default: $(resources.inputs.shipping-pr.path)/front-end/front-end-dep.yaml
+    - name: pathToDbYamlFile2
+      type: string
+      description: The path to the yaml file to deploy within the git source
+      default: $(resources.inputs.shipping-pr.path)/catalogue/cataloguedb-dep-ser.yaml
+    - name: pathToYamlFile3
+      type: string
+      description: The path to the yaml file to deploy within the git source
+      default: $(resources.inputs.shipping-pr.path)/catalogue/catalogue-dep-ser.yaml
+    - name: pathToYamlFile4
+      type: string
+      description: The path to the yaml file to deploy within the git source
+      default: $(resources.inputs.shipping-pr.path)/cart/cart-dep-ser.yaml
+    - name: pathToDbYamlFile4
+      type: string
+      default:  $(resources.inputs.shipping-pr.path)/cart/cartdb-dep-ser.yaml
+    - name: pathToYamlFile5
+      type: string
+      description: The path to the yaml file to deploy within the git source
+      default: $(resources.inputs.shipping-pr.path)/orders/orders-dep-ser.yaml
+    - name: pathToDbYamlFile6
+      type: string
+      default:  $(resources.inputs.shipping-pr.path)/orders/ordersdb-dep-ser.yaml
+    - name: pathToYamlFile7
+      type: string
+      description: The path to the yaml file to deploy within the git source
+      default: $(resources.inputs.shipping-pr.path)/shipping/shipping-dep-ser.yaml
+    - name: pathToYamlFile8
+      type: string
+      description: The path to the yaml file to deploy within the git source
+      default: $(resources.inputs.shipping-pr.path)/queue-master/queue-master-dep-ser.yaml
+    - name: pathToDbYamlFile9
+      type: string
+      description: The path to the yaml file to deploy within the git source
+      default: $(resources.inputs.shipping-pr.path)/queue-master/rabbit-master-dep-ser.yaml
+    - name: pathToYamlFile10
+      type: string
+      description: The path to the yaml file to deploy within the git source
+      default: $(resources.inputs.shipping-pr.path)/user/user-dep-ser.yaml
+    - name: namespace
+      description: Name of the namespace to deploy.
+      default: "prod"
+  steps:
+   - name: run-kubectl
+     image: lachlanevenson/k8s-kubectl
+     command: ["kubectl"]
+     args:
+       - "apply"
+       - "-f"
+       - "$(params.pathToYamlFile1)"
+       - "-f"
+       - "$(params.pathToYamlFile10)"
+       - "-f"
+       - "$(params.pathToDbYamlFile2)"
+       - "-f"
+       - "$(params.pathToYamlFile3)"
+       - "-f"
+       - "$(params.pathToYamlFile4)"
+       - "-f"
+       - "$(params.pathToYamlFile5)"
+       - "-f"
+       - "$(params.pathToDbYamlFile6)"
+       - "-f"
+       - "$(params.pathToYamlFile7)"
+       - "-f"
+       - "$(params.pathToYamlFile8)"
+       - "-f"
+       - "$(params.pathToDbYamlFile9)"
+       - "-n"
+       - "$(params.namespace)"
