@@ -1,16 +1,19 @@
 
 
-up: cluster namespace platform secret-dockerhup e2e-test-image tekton log-monitor
+up: cluster secret-dockerhup tekton log-monitor
+
+wait: 
+	echo "waiting" && sleep 90
 
 cluster: 
-	cd k8s-sandbox && make up
+	cd k8s-sandbox &&  make up && cd .. && make wait && cd k8s-sandbox && make install-cicd install-ingress
 down:
 	cd k8s-sandbox && make down
 
-namespace:
-	kubectl apply -f namespaces.yaml
-platform:
-	 cd k8s-sandbox && make install-cicd install-ingress
+#namespace:
+#	kubectl apply -f namespaces.yaml
+#platform:
+#	 cd k8s-sandbox && make install-cicd install-ingress
 
 log-monitor: pro elfs
 
@@ -18,13 +21,13 @@ log-monitor: pro elfs
 pro: 
 	#helm repo add stable https://kubernetes-charts.storage.googleapis.com
 	helm repo update 
-	#kubectl create namespace monitor 
+	kubectl create namespace monitor 
 	helm install prometheus-operator stable/prometheus-operator --namespace monitor --set grafana.service.type=LoadBalancer 
-	kubectl apply -f pro-grag/ingress.yaml -n monitor 
+	kubectl apply -f pro-graf/ingress.yaml -n monitor 
 	kubectl get svc -n monitor | grep prometheus-operator-grafana 
 
 elfs: 
-	#kubectl create namespace elf 
+	kubectl create namespace elf 
 	#kubectl apply -f elf/elf.namespace.yaml 
 	#helm repo add elastic https://helm.elastic.co 
 	#helm repo add fluent https://fluent.github.io/helm-charts 
@@ -59,20 +62,20 @@ shipping-k8s:
 queue-master-k8s:
 	cd queue-master && kubectl create -f queue-master-dep-ser.yaml -f rabbit-master-dep-ser.yaml -n test
 
-##but image e2e test
-tekton: front-end-tkn user-db-tkn catalogue-db-tkn  user-tkn catalogue-tkn cart-tkn orders-tkn payment-tkn shipping-tkn queue-master-tkn
+
+tekton: e2e-test-image front-end-tkn user-db-tkn catalogue-db-tkn  user-tkn catalogue-tkn cart-tkn orders-tkn payment-tkn shipping-tkn queue-master-tkn
 
 front-end-tkn:
-	kubectl create -f sa.yaml -f role-binding.yaml -f front-end/try1/pipelineResource.yaml -f front-end/try1/task.yaml \
-	-f front-end/try1/deployTask.yaml -f task-deploy-prod.yaml -f front-end/try1/task-e2e-test.yaml-f front-end/try1/pipeline.yaml \
+	kubectl create -f front-end/try1/pipelineResource.yaml -f front-end/try1/task.yaml \
+	-f front-end/try1/deployTask.yaml -f front-end/try1/task-deploy-prod.yaml -f front-end/try1/task-e2e-test.yaml -f front-end/try1/pipeline.yaml \
         -f front-end/try1/pipelineRun.yaml -n test
 
 user-db-tkn:
-	kubectl create -f user/db-try1/pipelineResource.yaml -f user/db-try1/task.yaml -f user/db-try1/deployTask.yaml -f task-deploy-prod  \
-        -f user/db-try1/pipeline.yaml -f user/db-try1/pipelineRun.yaml -n test
+	kubectl create -f user/db-try1/pipelineResource.yaml -f user/db-try1/task.yaml -f user/db-try1/deployTask.yaml -f user/db-try1/task-e2e-test.yaml \
+	-f user/db-try1/task-deploy-prod.yaml -f user/db-try1/pipeline.yaml -f user/db-try1/pipelineRun.yaml -n test
 user-tkn:
-	kubectl create -f user/try1/pipelineResource.yaml -f user/try1/task.yaml -f user/try1/deployTask.yaml\
-         -f user/try1/pipeline.yaml -f user/try1/pipelineRun.yaml -n test
+	kubectl create -f user/try1/pipelineResource.yaml -f user/try1/task.yaml -f user/try1/deployTask.yaml -f user/try1/task-e2e-test.yaml \
+         -f user/try1/task-deploy-prod.yaml -f user/try1/pipeline.yaml -f user/try1/pipelineRun.yaml -n test
 catalogue-db-tkn:
 	kubectl create -f catalogue/db-try1/pipelineResource.yaml -f catalogue/db-try1/task.yaml -f catalogue/db-try1/deployTask.yaml 	
 	-f catalogue/db-try1/pipeline.yaml -f catalogue/db-try1/pipelineRun.yaml -n test
@@ -97,8 +100,8 @@ queue-master-tkn:
         -f queue-master/try1/deployTask.yaml   -f queue-master/try1/pipeline.yaml -f queue-master/try1/pipelineRun.yaml -n test
 
 e2e-test-image:
-	kubectl create -f e2e-js-test/try1/pipelineResource.yaml -f e2e-js-test/try1/task.yaml -f e2e-js-test/try1/pipeline.yaml \
-	-f e2e-js-test/try1/pipelineRun.yaml -n test 
+	kubectl create -f sa.yaml -f role-binding.yaml -f e2e-js-test/try1/pipelineResource.yaml -f e2e-js-test/try1/task.yaml \
+        -f e2e-js-test/try1/pipeline.yaml -f e2e-js-test/try1/pipelineRun.yaml -n test 
 
 push-images: secret-dockerhup e2e-tests-image front-end-image user-image catalogue-image payment-image shipping-image carts-image queue-master-image orders-image load-test-image
 
