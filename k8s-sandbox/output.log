@@ -23,3 +23,13 @@ Logging: install-fluent-bit
 Logging: install-kibana
 Monitoring: install-grafana
 Monitoring: install-grafana
+Monitoring: delete-grafana
+Monitoring: delete-prometheus
+Monitoring: delete-prometheus
+Monitoring: delete-grafana
+Logging: delete-elasticsearch
+Logging: delete-elasticsearch
+Logging: delete-elasticsearch
+Logging: delete-elasticsearch
+Logging: delete-elasticsearch
+Logging: delete-elasticsearch
