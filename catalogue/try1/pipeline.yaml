@@ -22,3 +22,19 @@ spec:
         inputs:
         - name: catalogue-pr
           resource: catalogue-pr
+    - name: catalogue-e2e-test
+      runAfter: ["catalogue-deploy-kubectl"]
+      taskRef:
+        name: catalogue-e2e-test
+      resources:
+        inputs:
+        - name: catalogue-pr
+          resource: catalogue-pr
+    - name: catalogue-deploy-to-prod
+      runAfter: ["catalogue-e2e-test"]
+      taskRef:
+        name: catalogue-deploy-to-prod
+      resources:
+        inputs:
+        - name: catalogue-pr
+          resource: catalogue-pr
