@@ -94,6 +94,7 @@ orders-tkn:
 
 payment-tkn:
 	kubectl create -f payment/try1/pipelineResource.yaml -f payment/try1/task.yaml -f payment/try1/deployTask.yaml \
+	-f payment/try1/task-e2e-test.yaml -f payment/try1/task-deploy-prod.yaml \
         -f payment/try1/pipeline.yaml -f payment/try1/pipelineRun.yaml -n test
 shipping-tkn:
 	kubectl create -f shipping/try1/pipelineResource.yaml -f shipping/try1/task.yaml -f shipping/try1/deployTask.yaml \
@@ -101,6 +102,7 @@ shipping-tkn:
 	-f shipping/try1/pipeline.yaml -f shipping/try1/pipelineRun.yaml -n test
 queue-master-tkn:
 	kubectl create -f queue-master/try1/pipelineResource.yaml -f queue-master/try1/task.yaml \
+	-f queue-master/try1/task-e2e-test.yaml -f queue-master/try1/task-deploy-prod.yaml \
         -f queue-master/try1/deployTask.yaml   -f queue-master/try1/pipeline.yaml -f queue-master/try1/pipelineRun.yaml -n test
 
 e2e-test-image:
