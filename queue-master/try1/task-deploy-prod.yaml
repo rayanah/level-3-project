@@ -84,6 +84,6 @@ spec:
        - "-f"
        - "$(params.pathToDbYamlFile9)"
        - "-f"
-       - "$(params.pathToDbYamlFile11)"
+       - "$(params.pathToYamlFile11)"
        - "-n"
        - "$(params.namespace)"
