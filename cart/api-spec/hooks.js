@@ -24,7 +24,7 @@ const cart = [
 
 
 const item = [
-    {"_id":ObjectID("579f227698689ebf2bf1cd31"),"_class":"works.weave.socks.cart.entities.Item","itemId":"819e1fbf-8b7e-4f6d-811f-693534916a8b","quantity":20,"unitPrice":99.0}
+    {"_id":ObjectID("579f227698689ebf2bf1cd31"),"_class":"works.weave.socks.cart.entities.Item","itemId":"819e1fbf-8b7e-4f6d-811f-693534916a8b","quantity":20,"unitPrice":9.0}
 ];
 
 
@@ -73,7 +73,7 @@ hooks.before("/carts/{customerId}/items > POST", function(transaction, done) {
 	{
 	    "itemId":"819e1fbf-8b7e-4f6d-811f-693534916a8b",
 	    "quantity": 20,
-	    "unitPrice" : 99.0
+	    "unitPrice" : 9.0
 	}
     );
 
