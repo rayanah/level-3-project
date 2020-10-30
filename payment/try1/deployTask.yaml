@@ -25,4 +25,6 @@ spec:
        - "$(params.pathToYamlFile)"
        - "-n"
        - "$(params.namespace)"
-
+   - name: sleep
+     image: ubuntu
+     args: ['-c', 'sleep 90']
