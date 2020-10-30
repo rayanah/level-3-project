@@ -1,3 +1,5 @@
+# Project Dairty:
+
 ## Day 1
   Create my own Sandbox and Create New Repo for the final-project and clone all the micro-services  
 
@@ -65,3 +67,10 @@ I have successfully done them all and again except orders.
 ## Day 15
 Today I announce that orders microservices wooooork finaly :"( thank god. I spent 4 days every time i repeate it with no use. but when I repeate every thing literally. oh god so so happy. next i will work with e2e-tests, and after they pass switch them to prod namespace.
 
+## Day 16
+the e2e test in general wan successfully done, but i did had minor error.
+Now I will make the e2e task for each task.I get all faild in cart-test.js, becuase the orders was slow,so in resualt the items was clustered in the cart and not checkout to "My orders" tabel and in result he get error the amount was exied 105.00.
+and i got some kernal error caused by bug from Go, but if I re-run it again will disappear.
+After I finish, I install pro-graf and elf for the project.
+
+# The end
