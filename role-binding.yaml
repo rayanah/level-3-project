@@ -1,4 +1,4 @@
-kind: Role
+#kind: Role
 #apiVersion: rbac.authorization.k8s.io/v1
 #metadata:
 #  name: sock-shop-role
@@ -33,8 +33,8 @@ subjects:
     name: sock-shop
     namespace: tes
 ---
-kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
 metadata:
   name: sock-shop-cluster-role
   namespace: test
