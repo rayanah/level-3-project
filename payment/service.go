@@ -47,7 +47,7 @@ func (s *service) Authorise(amount float32) (Authorisation, error) {
 	}
 	authorised := false
 	message := "Payment declined"
-	if amount <= s.declineOverAmount {
+	if amount >= s.declineOverAmount {
 		authorised = true
 		message = "Payment authorised"
 	} else {

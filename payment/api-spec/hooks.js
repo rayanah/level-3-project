@@ -4,7 +4,7 @@ const hooks = require('hooks');
 hooks.before("/paymentAuth > POST", function(transaction, done) {
     transaction.request.headers['Content-Type'] = 'application/json';
     transaction.request.body = JSON.stringify({
-	"amount": 100.00
+	"amount": 1000.00
     });
     done();
 });
