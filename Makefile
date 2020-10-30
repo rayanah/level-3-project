@@ -39,7 +39,7 @@ queue-master-k8s:
 	cd queue-master && kubectl create -f queue-master-dep-ser.yaml -f rabbit-master-dep-ser.yaml -n test
 
 
-tekton: e2e-test-image front-end-tkn user-db-tkn catalogue-db-tkn  user-tkn catalogue-tkn cart-tkn orders-tkn payment-tkn shipping-tkn queue-master-tkn
+tekton: e2e-test-image front-end-tkn user-db-tkn orders-tkn shipping-tkn payment-tkn catalogue-db-tkn user-tkn catalogue-tkn cart-tkn payment-tkn queue-master-tkn
 
 front-end-tkn:
 	kubectl create -f front-end/try1/pipelineResource.yaml -f front-end/try1/task.yaml \
