@@ -4,7 +4,8 @@ The project goal is to build and deploy Sock Shop website [Weaveworks Shock Shop
 
 ## To Run The Project
 
-Use the [Makefile](https://github.com/rayanah/level-3-project/blob/main/Makefile)
+Use the [Makefile](https://github.com/rayanah/level-3-project/blob/main/Makefile).  
+##### Note: it's better to run the project in 2xlarge aws instance 
 
 ```bash
 make up
