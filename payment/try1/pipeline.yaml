@@ -22,3 +22,19 @@ spec:
         inputs:
         - name: payment-pr
           resource: payment-pr
+    - name: payment-e2e-test
+      runAfter: ["payment-deploy-kubectl"]
+      taskRef:
+        name: payment-e2e-test
+      resources:
+        inputs:
+        - name: payment-pr
+          resource: payment-pr
+    - name: payment-deploy-to-prod
+      runAfter: ["payment-e2e-test"]
+      taskRef:
+        name: payment-deploy-to-prod
+      resources:
+        inputs:
+        - name: payment-pr
+          resource: payment-pr

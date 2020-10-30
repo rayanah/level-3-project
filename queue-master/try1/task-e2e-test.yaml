@@ -1,0 +1,24 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: queue-e2e-test
+spec:
+  resources:
+    inputs:
+    - name: queue-pr
+      type: git
+  params:
+  - name: IMAGE
+    description: Name (reference) of the image to build.
+    default: "rayanah/e2e-tests"
+  steps:
+  - name: run-test
+    image: rayanah/e2e-tests
+    script: |
+      #!/bin/sh
+       pwd
+       cd queue-pr/e2e-js-test       
+       rm -rf node_modules package-lock.json
+       npm init -y
+       npm install --save chrome-remote-interface chrome-launcher mocha express request body-parser sinon chai chai-http http
+       source runner.sh

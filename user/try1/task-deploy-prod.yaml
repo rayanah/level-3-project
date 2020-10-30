@@ -50,6 +50,10 @@ spec:
       type: string
       description: The path to the yaml file to deploy within the git source
       default: $(resources.inputs.user-p-res.path)/user/user-dep-ser.yaml
+    - name: pathToYamlFile11
+      type: string
+      description: The path to the yaml file to deploy within the git source
+      default: $(resources.inputs.user-p-res.path)/payment/payment-dep-ser.yaml
     - name: namespace
       description: Name of the namespace to deploy.
       default: "prod"
@@ -79,5 +83,7 @@ spec:
        - "$(params.pathToYamlFile8)"
        - "-f"
        - "$(params.pathToDbYamlFile9)"
+       - "-f"
+       - "$(params.pathToDbYamlFile11)"
        - "-n"
        - "$(params.namespace)"
