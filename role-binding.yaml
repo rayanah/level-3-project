@@ -1,21 +1,56 @@
 kind: Role
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:
-  name: sock-shop-role
-rules:
-- apiGroups: ["","apps", "extensions"]
-  resources: ["services", "deployments", "deployments.apps", "replicasets", "pods", "ingresses","secrets"]
-  verbs: ["*"]
+#apiVersion: rbac.authorization.k8s.io/v1
+#metadata:
+#  name: sock-shop-role
+#rules:
+#- apiGroups: ["","apps", "extensions"]
+#  resources: ["services", "deployments", "deployments.apps", "replicasets", "pods", "ingresses","secrets"]
+#  verbs: ["*"]
 
 ---
-apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
+#apiVersion: rbac.authorization.k8s.io/v1
+#kind: RoleBinding
+#metadata:
+#  name: sock-shop-role-binding
+#roleRef:
+#  apiGroup: rbac.authorization.k8s.io
+#  kind: Role
+#  name: sock-shop-role
+#subjects:
+#- kind: ServiceAccount
+#  name: sock-shop
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
 metadata:
-  name: sock-shop-role-binding
+  name: cluster-binding
 roleRef:
   apiGroup: rbac.authorization.k8s.io
-  kind: Role
-  name: sock-shop-role
+  kind: ClusterRole
+  name: sock-shop-cluster-role
 subjects:
-- kind: ServiceAccount
-  name: sock-shop
+  - kind: ServiceAccount
+    name: sock-shop
+    namespace: tes
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: sock-shop-cluster-role
+  namespace: test
+rules:
+  - apiGroups: [""]
+    resources: ["pods", "namespaces", "secrets", "events", "serviceaccounts", "configmaps", "services"]
+    verbs: ["get", "list", "create", "update", "delete", "patch", "watch"]
+  - apiGroups: ["apps"]
+    resources: ["statefulsets", "deployments"]
+    verbs: ["get", "list", "create", "update", "delete", "patch", "watch"]
+  - apiGroups: ["tekton.dev"]
+    resources: ["tasks", "clustertasks", "taskruns", "pipelines", "pipelineruns", "pipelineresources"]
+    verbs: ["get", "list", "create", "update", "delete", "patch", "watch"]
+  - apiGroups: ["triggers.tekton.dev"]
+    resources: ["eventlisteners", "triggerbindings","triggertemplates"]
+    verbs: ["get", "list", "create", "update", "delete", "patch", "watch"]
+  - apiGroups: ["extensions"]
+    resources: ["ingresses"]
+    verbs: ["get", "list", "create", "update", "delete"]
