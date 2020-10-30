@@ -1,6 +1,6 @@
-## DevOps Bootcamp Level 3 Final Project
+# DevOps Bootcamp Level 3 Final Project
 
-# To Run the Project
+## To Run the Project
     
     make run
 
