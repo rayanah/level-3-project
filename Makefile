@@ -19,13 +19,13 @@ log-monitor: pro elfs
 pro: 
 	#helm repo add stable https://kubernetes-charts.storage.googleapis.com
 	helm repo update 
-	kubectl create namespace monitor 
+	#kubectl create namespace monitor 
 	helm install prometheus-operator stable/prometheus-operator --namespace monitor --set grafana.service.type=LoadBalancer 
 	kubectl apply -f pro-graf/ingress.yaml -n monitor 
 	kubectl get svc -n monitor | grep prometheus-operator-grafana 
 
 elfs: 
-	kubectl create namespace elf 
+	#kubectl create namespace elf 
 	#kubectl apply -f elf/elf.namespace.yaml 
 	#helm repo add elastic https://helm.elastic.co 
 	#helm repo add fluent https://fluent.github.io/helm-charts 
