@@ -33,4 +33,4 @@ spec:
        - "$(params.namespace)"
    - name: sleep
      image: ubuntu
-     args: ['-c', 'sleep 120']
+     args: ['-c', 'sleep 160']
