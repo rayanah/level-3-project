@@ -15,30 +15,11 @@ down:
 
 log-monitor: pro elfs
 
-
 pro: 
-	#helm repo add stable https://kubernetes-charts.storage.googleapis.com
-	helm repo update 
-	#kubectl create namespace monitor 
-	helm install prometheus-operator stable/prometheus-operator --namespace monitor --set grafana.service.type=LoadBalancer 
-	kubectl apply -f pro-graf/ingress.yaml -n monitor 
-	kubectl get svc -n monitor | grep prometheus-operator-grafana 
+	sh pro-graf/pro-graf.sh
 
 elfs: 
-	#kubectl create namespace elf 
-	#kubectl apply -f elf/elf.namespace.yaml 
-	#helm repo add elastic https://helm.elastic.co 
-	#helm repo add fluent https://fluent.github.io/helm-charts 
-	helm repo update 
-	helm install elasticsearch elastic/elasticsearch --version=7.9.0 --namespace=elf 
-	helm install fluent-bit fluent/fluent-bit --namespace=elf 
-	helm install kibana elastic/kibana --version=7.9.0 --namespace=elf --set service.type=LoadBalancer 
-	kubectl run random-logger --image=chentex/random-logger -n elf 
-	kubectl apply -f elf/ingress.yaml -n elf 
-	#to access elf port 
-	kubectl get svc -n elf | grep kibana-kiban
-
-
+	sh elf/elf.sh
 
 
 k8s: front-end-k8s catalogue-k8s cart-k8s orders-k8s payment-k8s shipping-k8s user-k8s 
