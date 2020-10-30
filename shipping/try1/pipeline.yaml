@@ -22,3 +22,19 @@ spec:
         inputs:
         - name: shipping-pr
           resource: shipping-pr
+    - name: shipping-e2e-test
+      runAfter: ["shipping-deploy-kubectl"]
+      taskRef:
+        name: shipping-e2e-test
+      resources:
+        inputs:
+        - name: shipping-pr
+          resource: shipping-pr
+    - name: shipping-deploy-to-prod
+      runAfter: ["shipping-e2e-test"]
+      taskRef:
+        name: shipping-deploy-to-prod
+      resources:
+        inputs:
+        - name: shipping-pr
+          resource: shipping-pr

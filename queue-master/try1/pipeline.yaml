@@ -22,3 +22,19 @@ spec:
         inputs:
         - name: queue-pr
           resource: queue-pr
+    - name: queue-e2e-test
+      runAfter: ["queue-deploy-kubectl"]
+      taskRef:
+        name: queue-e2e-test
+      resources:
+        inputs:
+        - name: queue-pr
+          resource: queue-pr
+    - name: queue-deploy-to-prod
+      runAfter: ["queue-e2e-test"]
+      taskRef:
+        name: queue-deploy-to-prod
+      resources:
+        inputs:
+        - name: queue-pr
+          resource: queue-pr
