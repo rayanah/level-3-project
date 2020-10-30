@@ -12,8 +12,6 @@ down:
 
 #namespace:
 #	kubectl apply -f namespaces.yaml
-#platform:
-#	 cd k8s-sandbox && make install-cicd install-ingress
 
 log-monitor: pro elfs
 
@@ -120,19 +118,6 @@ e2e-image:
 	kubectl create -f e2e-tests/tektonDockerPush/serviceaccount.yaml -f e2e-tests/tektonDockerPush/pipelinerun.yaml\
         -f e2e-tests/tektonDockerPush/task.yaml -f e2e-tests/tektonDockerPush/run.yaml -n test
 
-front-end-image:
-
-user-db-image:
-
-user-image:
-
-catalogue-db-image:
-
-
-catalogue-image:
-	       
-orders-image:
-
 payment-image:
 	kubectl create -f payment/tektonDockerPush/serviceaccount.yaml -f payment/tektonDockerPush/pipelinerun.yam\
 	l -f payment/tektonDockerPush/task.yaml -f payment/tektonDockerPush/run.yaml -n test
@@ -140,10 +125,6 @@ payment-image:
 shipping-image:
 	kubectl create -f shipping/tektonDockerPush/serviceaccount.yaml -f shipping/tektonDockerPush/pipelinerun.yaml\
 	 -f shipping/tektonDockerPush/task.yaml -f shipping/tektonDockerPush/run.yaml -n test
-cart-db-image:
-
-cart-image:
-
 
 queue-master-image:
 	  kubectl create -f queue-master/tektonDockerPush/serviceaccount.yaml -f queue-master/tektonDockerPush/pipelinerun.yaml\
