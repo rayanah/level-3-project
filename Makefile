@@ -1,17 +1,14 @@
 
 
-up: cluster secret-dockerhup tekton log-monitor
+up: cluster secret-dockerhup tekton  log-monitor
 
 wait: 
 	echo "waiting" && sleep 90
 
 cluster: 
-	cd k8s-sandbox &&  make up && cd .. && make wait && cd k8s-sandbox && make install-cicd install-ingress
+	cd k8s-sandbox &&  make up  install-cicd install-ingress
 down:
-	cd k8s-sandbox && make down
-
-#namespace:
-#	kubectl apply -f namespaces.yaml
+	cd k8s-sandbox && make down 
 
 log-monitor: pro elfs
 
