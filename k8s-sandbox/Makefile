@@ -36,8 +36,8 @@ repos:
 	helm repo add hashicorp https://helm.releases.hashicorp.com
 	helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 	helm repo add grafana https://grafana.github.io/helm-charts
-	helm repo add elastic https://helm.elastic.co
-	helm repo add fluent https://fluent.github.io/helm-charts
+	#helm repo add elastic https://helm.elastic.co
+	#helm repo add fluent https://fluent.github.io/helm-charts
 	helm repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/
 	helm repo update
 
