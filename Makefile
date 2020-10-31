@@ -8,7 +8,7 @@ wait:
 cluster: 
 	cd k8s-sandbox &&  make up  install-cicd install-ingress
 down:
-	cd k8s-sandbox && make down 
+	k3d cluster delete labs
 
 log-monitor: pro elfs
 
@@ -37,6 +37,31 @@ shipping-k8s:
 	cd shipping && kubectl create -f shipping-dep-ser.yaml -n test
 queue-master-k8s:
 	cd queue-master && kubectl create -f queue-master-dep-ser.yaml -f rabbit-master-dep-ser.yaml -n test
+
+delete-pipeline-run:
+	kubectl delete pipelinerun.tekton.dev/front-end-run -n test
+	kubectl delete pipelinerun.tekton.dev/user-db-run -n test
+	kubectl delete pipelinerun.tekton.dev/user-run -n test
+	kubectl delete pipelinerun.tekton.dev/payment-run -n test
+	kubectl delete pipelinerun.tekton.dev/shipping-run -n test 
+	kubectl delete pipelinerun.tekton.dev/catalogue-run -n test
+	kubectl delete pipelinerun.tekton.dev/catalogue-db-run -n test
+	kubectl delete pipelinerun.tekton.dev/carts-run -n test
+	kubectl delete pipelinerun.tekton.dev/queue-run -n test
+	kubectl delete pipelinerun.tekton.dev/orders-run -n test
+	kubectl delete pipelinerun.tekton.dev/orders-db-run -n test
+apply-pipeline-run:
+	kubectl create -f  front-end/try1/pipelineRun.yaml -n test
+	kubectl create -f  user/db-try1/pipelineRun.yaml -n test 
+	kubectl create -f  catalogue/db-try1/pipelineRun.yaml -n test 
+	kubectl create -f  orders/db-try1/pipelineRun.yaml -n test
+	kubectl create -f  orders/try1/pipelineRun.yaml -n test
+	kubectl create -f  payment/try1/pipelineRun.yaml -n test
+	kubectl create -f  shipping/try1/pipelineRun.yaml -n test
+	kubectl create -f  cart/try1/pipelineRun.yaml -n test
+	kubectl create -f  user/try1/pipelineRun.yaml -n test
+	kubectl create -f  catalogue/try1/pipelineRun.yaml -n test 
+	kubectl create -f  queue-master/try1/pipelineRun.yaml -n test
 
 
 tekton: e2e-test-image front-end-tkn user-db-tkn orders-tkn shipping-tkn payment-tkn catalogue-db-tkn user-tkn catalogue-tkn cart-tkn payment-tkn queue-master-tkn
